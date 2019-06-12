@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_weekly/utils/common_util.dart';
+import 'package:flutter_weekly/widgets/widget_pageview_page.dart';
+
+import 'package:redux/redux.dart';
+
+import 'common/global_stage.dart';
+import 'common/styles/color_style.dart';
+
+void main() {
+  runApp(new FlutterReduxApp());
+}
+
+class FlutterReduxApp extends StatelessWidget {
+  //创建Store，引用Global 中的appReducer 创建Reducer
+  //initialStage 初始化Stage
+  final store = new Store<GlobalStage>(appReducer,
+      initialState: new GlobalStage(
+          themeData: CommonUtils.getThemeData(GlobalColors.primarySwatch)));
+
+  FlutterReduxApp({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    //通过 StoreProovider 应用store
+    return new StoreProvider(
+        store: store,
+        child: new StoreBuilder<GlobalStage>(builder: (context, store) {
+          return new MaterialApp(
+              theme: store.state.themeData,
+              home: new HomePageView()//new HomePage(),
+          );
+        }));
+  }
+}
+
+//x
