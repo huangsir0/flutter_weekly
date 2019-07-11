@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_weekly/utils/common_util.dart';
 import 'package:flutter_weekly/widgets/widget_pageview_page.dart';
 
 import 'package:redux/redux.dart';
 
 import 'common/global_stage.dart';
 import 'common/styles/color_style.dart';
+import 'common/utils/common_util.dart';
+import 'common/utils/screen.dart';
 
 void main() {
   runApp(new FlutterReduxApp());
@@ -21,8 +22,11 @@ class FlutterReduxApp extends StatelessWidget {
 
   FlutterReduxApp({Key key}) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
+    Screen.init();
     //通过 StoreProovider 应用store
     return new StoreProvider(
         store: store,

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/common/global_stage.dart';
 import 'package:flutter_weekly/common/reduxs/theme_redux.dart';
+import 'package:flutter_weekly/common/utils/common_util.dart';
 
 import 'dart:math';
 
-import 'package:flutter_weekly/utils/common_util.dart';
+
 import 'package:flutter_weekly/widgets/widget_test_a.dart';
 
 

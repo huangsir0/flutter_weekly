@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/mvp/scenes/common_scene.dart';
+import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/widgets/widget_b_page.dart';
 import 'package:flutter_weekly/widgets/widget_c_page.dart';
 import 'package:flutter_weekly/widgets/widget_d_page.dart';
@@ -19,7 +21,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   String _title="HomePage";
 
-  List<String> Tabs = ["Home", "Ios", "Python", "Android"];
+  List<String> Tabs = ["Gank", "Example", "Study", "Android"];
 
   _initPageViews() {
     _body = new PageView.builder(
@@ -80,7 +82,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new HomePage();
+        return  new GanksScene();
       case 1:
         return new TestBPageView();
       case 2:
