@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_weekly/widgets/widget_pageview_page.dart';
+import 'package:flutter_weekly/home/widget_pageview_page.dart';
 
 import 'package:redux/redux.dart';
 

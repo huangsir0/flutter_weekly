@@ -5,6 +5,7 @@ import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
+import 'package:flutter_weekly/widgets/loading_widget.dart';
 import '../common_presenter.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -53,7 +54,7 @@ class _CommonSceneState extends State<CommonScene>
   @override
   Widget build(BuildContext context) {
     return datas.length == 0
-        ? Container()
+        ? WaitingWidget()
         : Center(
       child: EasyRefresh(
         key: _easyRefreshKey,
@@ -126,47 +127,43 @@ class _CommonSceneState extends State<CommonScene>
     CommonBean data = datas[index];
     print("+++"+data.toString());
     return Container(
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/item_bg.png'))),
       alignment: Alignment.center,
-      color: Colors.orange[200],
-      margin: EdgeInsets.only( top: 10),
+      margin: EdgeInsets.only( top:index==0?0: 20),
       child: SizedBox(
         height: 200,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Padding(
-              padding: EdgeInsets.only(left: 10, top: 10),
+              padding: EdgeInsets.only(left:10, top: 15),
+              child: Text(
+                '${data.type}',
+                style: Theme.of(context).textTheme.copyWith(headline: TextStyle(color: Theme.of(context).primaryColor)).headline,
+              ),
+            ),
+            new Padding(
+              padding: EdgeInsets.only(left: 10, top: 20,right: 60),
               child: Text(
                 data.desc,
                 style: Theme.of(context).textTheme.headline,
-                maxLines: 2,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+
+
             new Padding(
-              padding: EdgeInsets.only(left: 10, top: 15),
-              child: Text(
-                '作者:${data.who}',
-                style: Theme.of(context).textTheme.display3,
-              ),
-            ),
-            new Padding(
-              padding: EdgeInsets.only(left: 10, top: 5),
-              child: Text(
-                '分类:${data.type}',
-                style: Theme.of(context).textTheme.display3,
-              ),
-            ),
-            new Padding(
-              padding: EdgeInsets.only(left: 10, top: 20, right: 10),
+              padding: EdgeInsets.only(left: 10, top: 80, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    '${data.publishedAt}',
+                    '${data.publishedAt.substring(0,10)}',
                     style: Theme.of(context).textTheme.display3,
                   ),
-                  Text(
-                    '来源:${data.source}',
+                   Text(
+                    '作者:${data.who}',
                     style: Theme.of(context).textTheme.display3,
                   ),
                 ],

@@ -7,7 +7,7 @@ import 'package:flutter_weekly/common/utils/common_util.dart';
 import 'dart:math';
 
 
-import 'package:flutter_weekly/widgets/widget_test_a.dart';
+import 'package:flutter_weekly/home/widget_test_a.dart';
 
 
 class HomeWidget extends StatefulWidget {

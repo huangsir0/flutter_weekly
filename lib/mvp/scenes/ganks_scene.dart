@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weekly/consts/config.dart';
 import 'package:flutter_weekly/mvp/constract/maincontract.dart';
 import 'package:flutter_weekly/common/utils/screen.dart';
+import 'package:flutter_weekly/widgets/loading_widget.dart';
 
 import '../main_presenter.dart';
 import 'common_scene.dart';
@@ -44,9 +45,7 @@ class _GanksSceneState extends State<GanksScene>
 
   @override
   Widget build(BuildContext context) {
-    return tabs.length == 0 ? Container(
-
-    ) : new Scaffold(
+    return tabs.length == 0 ? WaitingWidget() : new Scaffold(
       body:  new NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -71,7 +70,6 @@ class _GanksSceneState extends State<GanksScene>
 
         body: new TabBarView(
           controller: _tabController,
-          ///下面是选项卡视图的内容列表,自己任意发挥即可
           children: tabs.map((String name) {
             return new CommonScene(Config.commonData+name,this.widget.onValueChange);
           }).toList(),

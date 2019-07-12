@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weekly/mvp/scenes/common_scene.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
-import 'package:flutter_weekly/widgets/widget_b_page.dart';
-import 'package:flutter_weekly/widgets/widget_c_page.dart';
-import 'package:flutter_weekly/widgets/widget_d_page.dart';
-import 'package:flutter_weekly/widgets/widget_home_page.dart';
+import 'package:flutter_weekly/home/widget_b_page.dart';
+import 'package:flutter_weekly/home/widget_c_page.dart';
+import 'package:flutter_weekly/home/widget_d_page.dart';
+import 'package:flutter_weekly/home/widget_home_page.dart';
 
 
 class HomePageViewWidget extends StatefulWidget {
