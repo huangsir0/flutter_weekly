@@ -23,6 +23,11 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   List<String> Tabs = ["Gank", "Example", "Study", "Android"];
 
+
+
+  //当前ListView(Ganks里面的ListView)是否是在底部
+  bool isBottom=false;
+
   _initPageViews() {
     _body = new PageView.builder(
       itemBuilder: (BuildContext context, int index) {
@@ -36,6 +41,14 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
     );
   }
 
+
+  void onScroll(bool isUp){
+    print(isUp ? "上滑" : "下滑");
+    setState(() {
+      isBottom=isUp;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -46,9 +59,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: null,//_buildAppBar(_title),
+      appBar: null,
       body: _body,
-      bottomNavigationBar: new BottomNavigationBar(items: [
+      bottomNavigationBar:isBottom?null: new BottomNavigationBar(items: [
         _buildBottomItem(Icons.home, Tabs[0]),
         _buildBottomItem(Icons.phone_iphone, Tabs[1]),
         _buildBottomItem(Icons.ac_unit, Tabs[2]),
@@ -73,16 +86,10 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
     });
   }
 
-  Widget _buildAppBar(String title) {
-    return title==Tabs[0]?null: new AppBar(
-      title: new Text(title),
-      centerTitle: true,
-    );
-  }
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return  new GanksScene();
+        return  new GanksScene(onScroll);
       case 1:
         return new TestBPageView();
       case 2:

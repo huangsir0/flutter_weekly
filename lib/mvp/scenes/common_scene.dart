@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/common/utils/screen.dart';
 import 'package:flutter_weekly/consts/config.dart';
 import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
@@ -10,7 +11,8 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 class CommonScene extends StatefulWidget {
   final String url;
 
-  CommonScene(this.url);
+  ValueChanged<bool> onScrollAction;
+  CommonScene(this.url,this.onScrollAction);
 
   @override
   _CommonSceneState createState() => _CommonSceneState();
@@ -20,11 +22,11 @@ class _CommonSceneState extends State<CommonScene>
     with TickerProviderStateMixin
     implements ICommonView {
   GlobalKey<EasyRefreshState> _easyRefreshKey =
-      new GlobalKey<EasyRefreshState>();
+  new GlobalKey<EasyRefreshState>();
   GlobalKey<RefreshHeaderState> _headerKey =
-      new GlobalKey<RefreshHeaderState>();
+  new GlobalKey<RefreshHeaderState>();
   GlobalKey<RefreshFooterState> _footerKey =
-      new GlobalKey<RefreshFooterState>();
+  new GlobalKey<RefreshFooterState>();
 
   CommonPresenter commonPresenter;
 
@@ -53,22 +55,31 @@ class _CommonSceneState extends State<CommonScene>
     return datas.length == 0
         ? Container()
         : Center(
-            child: EasyRefresh(
-              key: _easyRefreshKey,
-              refreshHeader: BallPulseHeader(
-                key: _headerKey,
-              ),
-              refreshFooter: BallPulseFooter(key: _footerKey),
-              child: new ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return _getItemView(context, index);
-                },
-                itemCount: datas.length,
-              ),
-              onRefresh: _onRefresh,
-              loadMore: _onLoadMore,
-            ),
-          );
+      child: EasyRefresh(
+        key: _easyRefreshKey,
+        refreshHeader: BallPulseHeader(
+          key: _headerKey,
+        ),
+        animationStateChangedCallback: (AnimationStates animationStatus,RefreshBoxDirectionStatus boxDirection){
+          if(boxDirection==RefreshBoxDirectionStatus.PULL){
+            if(this.widget.onScrollAction!=null){
+              this.widget.onScrollAction(false);
+            }
+          }else if(boxDirection==RefreshBoxDirectionStatus.PUSH){
+            this.widget.onScrollAction(true);
+          }
+        },
+        refreshFooter: BallPulseFooter(key: _footerKey),
+        child: new ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return _getItemView(context, index);
+          },
+          itemCount: datas.length,
+        ),
+        onRefresh: _onRefresh,
+        loadMore: _onLoadMore,
+      ),
+    );
   }
 
   @override
@@ -117,7 +128,7 @@ class _CommonSceneState extends State<CommonScene>
     return Container(
       alignment: Alignment.center,
       color: Colors.orange[200],
-      margin: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only( top: 10),
       child: SizedBox(
         height: 200,
         child: Column(
