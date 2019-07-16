@@ -8,9 +8,11 @@ import 'common/global_stage.dart';
 import 'common/styles/color_style.dart';
 import 'common/utils/common_util.dart';
 import 'common/utils/screen.dart';
+import 'example1/scroll_app.dart';
 
 void main() {
-  runApp(new FlutterReduxApp());
+  //runApp(new FlutterReduxApp());
+  runApp(new ScrollApp());
 }
 
 class FlutterReduxApp extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 abstract class  ICommonView extends IBaseView{
 
   ///数据成功加载
-  void onLoadSuc(List<CommonBean> datas);
+  Future onLoadSuc(List<CommonBean> datas);
 
 
   ///数据加载失败

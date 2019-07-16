@@ -26,6 +26,7 @@ dependencies:
   flutter_redux: ^0.5.3
   dio: ^2.1.10
   flutter_easyrefresh: ^1.2.7
+  webview_flutter: ^0.3.10+2
 
 dev_dependencies:
   flutter_test:

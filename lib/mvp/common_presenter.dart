@@ -7,7 +7,7 @@ class CommonPresenter extends BasePresenter<ICommonView> {
   CommonModelImpl commonModelImpl = new CommonModelImpl();
 
   //加载数据
-  void getDatas(String url, int pageNum, int pageSize) {
+  Future getDatas(String url, int pageNum, int pageSize) async {
     this.mView.showLoading();
     this.commonModelImpl.fetchDatas(url, pageNum, pageSize).then((data) {
       this.mView.onLoadSuc(data);
