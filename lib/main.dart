@@ -11,8 +11,8 @@ import 'common/utils/screen.dart';
 import 'example1/scroll_app.dart';
 
 void main() {
-  //runApp(new FlutterReduxApp());
-  runApp(new ScrollApp());
+  runApp(new FlutterReduxApp());
+  //runApp(new ScrollApp());
 }
 
 class FlutterReduxApp extends StatelessWidget {

@@ -4,7 +4,6 @@ import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
 import 'package:flutter_weekly/widgets/loading_widget.dart';
 import '../common_presenter.dart';
 
-
 class CommonScene extends StatefulWidget {
   final String url;
 
@@ -17,7 +16,7 @@ class CommonScene extends StatefulWidget {
 }
 
 class _CommonSceneState extends State<CommonScene>
-    with TickerProviderStateMixin,AutomaticKeepAliveClientMixin
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin
     implements ICommonView {
   CommonPresenter commonPresenter;
 
@@ -33,6 +32,8 @@ class _CommonSceneState extends State<CommonScene>
 
   bool isLoadMore = false;
 
+  bool _scrollRefresh = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,22 +43,21 @@ class _CommonSceneState extends State<CommonScene>
   }
 
   _onScrollNotification(ScrollNotification scrollInfo) {
-    print("pixels=>"+scrollInfo.metrics.pixels.toString());
-    print("minScrollExtent=>"+scrollInfo.metrics.minScrollExtent.toString());
-    print("maxScrollExtent=>"+scrollInfo.metrics.maxScrollExtent.toString());
+    print("pixels=>" + scrollInfo.metrics.pixels.toString());
+    print("minScrollExtent=>" + scrollInfo.metrics.minScrollExtent.toString());
+    print("maxScrollExtent=>" + scrollInfo.metrics.maxScrollExtent.toString());
 
     if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
-
       //滑到了底部
       _onLoadMore();
-      if(this.widget.onScrollAction!=null){
+      if (this.widget.onScrollAction != null) {
         this.widget.onScrollAction(true);
       }
     }
 
-    if(scrollInfo.metrics.atEdge&&scrollInfo.metrics.pixels==0.0){
-       //滑到头了
-      if(this.widget.onScrollAction!=null){
+    if (scrollInfo.metrics.atEdge && scrollInfo.metrics.pixels == 0.0&&_scrollRefresh) {
+      //滑到头了
+      if (this.widget.onScrollAction != null) {
         this.widget.onScrollAction(false);
       }
     }
@@ -74,9 +74,12 @@ class _CommonSceneState extends State<CommonScene>
                     itemBuilder: (BuildContext context, int index) {
                       return _getItemView(context, index);
                     },
-                    itemCount: datas.length+1,//+1为加载更多时候的视图
+                    itemCount: datas.length + 1, //+1为加载更多时候的视图
                   ),
-                  onRefresh: _onRefresh),
+                  onRefresh: () {
+                    _scrollRefresh = true;
+                    _onRefresh();
+                  }),
               onNotification: (ScrollNotification scrollInfo) =>
                   _onScrollNotification(scrollInfo),
             ),
@@ -113,6 +116,7 @@ class _CommonSceneState extends State<CommonScene>
 
   Future<Null> _onLoadMore() {
     pageNum += 1;
+    _scrollRefresh=false;
     isLoadMore = true;
     commonPresenter.getDatas(this.widget.url, pageNum, itemCount);
     return null;
@@ -124,7 +128,7 @@ class _CommonSceneState extends State<CommonScene>
   }
 
   Widget _getItemView(BuildContext context, int index) {
-    if(index<datas.length){
+    if (index < datas.length) {
       CommonBean data = datas[index];
       return Container(
         decoration: BoxDecoration(
@@ -143,8 +147,8 @@ class _CommonSceneState extends State<CommonScene>
                   style: Theme.of(context)
                       .textTheme
                       .copyWith(
-                      headline:
-                      TextStyle(color: Theme.of(context).primaryColor))
+                          headline:
+                              TextStyle(color: Theme.of(context).primaryColor))
                       .headline,
                 ),
               ),
@@ -177,10 +181,9 @@ class _CommonSceneState extends State<CommonScene>
           ),
         ),
       );
-    }else{
+    } else {
       return _getLoadMoreView();
     }
-
   }
 
   Widget _getLoadMoreView() {
@@ -188,8 +191,10 @@ class _CommonSceneState extends State<CommonScene>
       height: 60,
       width: double.infinity,
       alignment: Alignment.center,
-      child: Opacity(opacity: isLoadMore?1.0:0.0,
-      child: WaitingWidget(),),
+      child: Opacity(
+        opacity: isLoadMore ? 1.0 : 0.0,
+        child: WaitingWidget(),
+      ),
     );
   }
 

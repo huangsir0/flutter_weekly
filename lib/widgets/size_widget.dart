@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weekly/home/widget_pageview_page.dart';
-
 
 class SizeWidget extends StatefulWidget {
-  Key key;
-  Widget child;
+ final Widget child;
 
-  SizeWidget({Key key, @required this.child})
+ const SizeWidget({Key key, @required this.child})
       : assert(child != null),
         super(key: key);
 
   @override
-  _SizeWidgetState createState() => _SizeWidgetState();
+  SizeWidgetState createState() => SizeWidgetState();
 }
 
-class _SizeWidgetState extends State<SizeWidget>
+class SizeWidgetState extends State<SizeWidget>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
 
@@ -49,15 +46,19 @@ class _SizeWidgetState extends State<SizeWidget>
   }
 
 
+  void show(){
+    _animationController.reset();
+    _animationController.forward();
+  }
+
+
+
+  void hide(){
+    _animationController.reverse();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isShow=BottomInheritedContext.of(context).isShow;
-    if(isShow){
-      _animationController.reset();
-      _animationController.forward();
-    }else{
-      _animationController.reverse();
-    }
     return SizeTransition(
       sizeFactor: animation,
       child: this.widget.child,

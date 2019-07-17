@@ -3,27 +3,9 @@ import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_b_page.dart';
 import 'package:flutter_weekly/home/widget_c_page.dart';
 import 'package:flutter_weekly/home/widget_d_page.dart';
-import 'package:flutter_weekly/mvp/scenes/webview_scene.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
+import 'package:flutter_weekly/widgets/study_custompainter_widget.dart';
 
-class BottomInheritedContext extends InheritedWidget {
-  //是否显示
-  bool isShow = true;
-
-  BottomInheritedContext(
-      {Key key, @required this.isShow, @required Widget child})
-      : super(key: key, child: child);
-
-  static BottomInheritedContext of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(BottomInheritedContext);
-  }
-
-  @override
-  bool updateShouldNotify(BottomInheritedContext oldWidget) {
-    // TODO: implement updateShouldNotify
-    return oldWidget.isShow != isShow;
-  }
-}
 
 class HomePageViewWidget extends StatefulWidget {
   @override
@@ -37,12 +19,12 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   var _pageController = new PageController(initialPage: 0);
 
+  final GlobalKey<SizeWidgetState> _sizeWidgetKey=new GlobalKey();
+
   List<String> Tabs = ["Gank", "Example", "Study", "Android"];
 
-  Widget bottomWidget;
-
   //主要用于控制BottomNavigationBar显示隐藏
-  SizeWidget sizeWidget;
+  SizeWidget bottomWidget;
   //是否显示底部
   bool isShowBottom = true;
 
@@ -58,7 +40,8 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       },
     );
 
-    sizeWidget=new SizeWidget(
+    bottomWidget=new SizeWidget(
+      key: _sizeWidgetKey,
         child: new BottomNavigationBar(
           items: [
             _buildBottomItem(Icons.home, Tabs[0]),
@@ -79,9 +62,12 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   void onScroll(bool isUp) {
     if(!isUp==isShowBottom)return;
     //通过BottomInheritedContext显示隐藏
-    setState(() {
-      isShowBottom=!isUp;
-    });
+    isShowBottom=!isUp;
+    if(isShowBottom){
+      this._sizeWidgetKey.currentState.show();
+    }else{
+      this._sizeWidgetKey.currentState.hide();
+    }
   }
 
   @override
@@ -93,7 +79,6 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    bottomWidget=  new BottomInheritedContext(isShow: isShowBottom, child: sizeWidget);
     return new Scaffold(
       body: _body,
       bottomNavigationBar: bottomWidget,
@@ -119,7 +104,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 2:
         return new TestCPageView();
       case 3:
-        return new WebViewPage();
+        return new PaintWidget();
     }
   }
 
