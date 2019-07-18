@@ -102,7 +102,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 1:
         return new TestBPageView();
       case 2:
-        return new TestCPageView();
+        return new TimeClockWidget();
       case 3:
         return new PaintWidget();
     }

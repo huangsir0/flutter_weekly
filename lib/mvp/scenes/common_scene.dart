@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
+import 'package:flutter_weekly/mvp/scenes/webview_scene.dart';
 import 'package:flutter_weekly/widgets/loading_widget.dart';
 import '../common_presenter.dart';
 
@@ -32,8 +33,6 @@ class _CommonSceneState extends State<CommonScene>
 
   bool isLoadMore = false;
 
-  bool _scrollRefresh = false;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -46,7 +45,8 @@ class _CommonSceneState extends State<CommonScene>
     print("pixels=>" + scrollInfo.metrics.pixels.toString());
     print("minScrollExtent=>" + scrollInfo.metrics.minScrollExtent.toString());
     print("maxScrollExtent=>" + scrollInfo.metrics.maxScrollExtent.toString());
-
+    print("extentBefore=>"+scrollInfo.metrics.extentBefore.toString());
+    print("extentAfter=>"+scrollInfo.metrics.extentAfter.toString());
     if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
       //滑到了底部
       _onLoadMore();
@@ -55,7 +55,7 @@ class _CommonSceneState extends State<CommonScene>
       }
     }
 
-    if (scrollInfo.metrics.atEdge && scrollInfo.metrics.pixels == 0.0&&_scrollRefresh) {
+    if (scrollInfo.metrics.extentBefore==0.0) {
       //滑到头了
       if (this.widget.onScrollAction != null) {
         this.widget.onScrollAction(false);
@@ -70,16 +70,13 @@ class _CommonSceneState extends State<CommonScene>
         : Center(
             child: NotificationListener<ScrollNotification>(
               child: new RefreshIndicator(
-                  child: new ListView.builder(
+                  child:MediaQuery.removePadding(context: context, child: new ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
                       return _getItemView(context, index);
                     },
                     itemCount: datas.length + 1, //+1为加载更多时候的视图
-                  ),
-                  onRefresh: () {
-                    _scrollRefresh = true;
-                    _onRefresh();
-                  }),
+                  ),removeTop: true,),
+                  onRefresh: _onRefresh),
               onNotification: (ScrollNotification scrollInfo) =>
                   _onScrollNotification(scrollInfo),
             ),
@@ -107,16 +104,14 @@ class _CommonSceneState extends State<CommonScene>
     });
   }
 
-  Future<Null> _onRefresh() async {
+  Future<void> _onRefresh() async {
     isLoadMore = false;
     pageNum = 1;
     await commonPresenter.getDatas(this.widget.url, pageNum, itemCount);
-    return null;
   }
 
   Future<Null> _onLoadMore() {
     pageNum += 1;
-    _scrollRefresh=false;
     isLoadMore = true;
     commonPresenter.getDatas(this.widget.url, pageNum, itemCount);
     return null;
@@ -130,13 +125,16 @@ class _CommonSceneState extends State<CommonScene>
   Widget _getItemView(BuildContext context, int index) {
     if (index < datas.length) {
       CommonBean data = datas[index];
-      return Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('images/item_bg.png'))),
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(top: index == 0 ? 0 : 20),
-        child: SizedBox(
+      return InkWell(
+        onTap: () => _onItemClick(data),
+        child: Container(
           height: 200,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/item_bg.jpg'), fit: BoxFit.fill)),
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(top: index == 0 ? 0 : 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -180,6 +178,7 @@ class _CommonSceneState extends State<CommonScene>
             ],
           ),
         ),
+        splashColor: Theme.of(context).primaryColor,
       );
     } else {
       return _getLoadMoreView();
@@ -201,4 +200,10 @@ class _CommonSceneState extends State<CommonScene>
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+
+  void _onItemClick(CommonBean data) {
+    Navigator.of(context).push(new MaterialPageRoute(builder: (context){
+      return new WebViewPage(data.desc,data.url);
+    }));
+  }
 }

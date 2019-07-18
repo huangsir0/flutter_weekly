@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weekly/consts/config.dart';
 import 'package:flutter_weekly/mvp/constract/maincontract.dart';
 import 'package:flutter_weekly/widgets/loading_widget.dart';
-
 import '../main_presenter.dart';
 import 'common_scene.dart';
 
@@ -66,7 +65,7 @@ class _GanksSceneState extends State<GanksScene>
                         centerTitle: true,
                         background: Image(
                           image: NetworkImage(
-                              'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551944816841&di=329f747e3f4c2554f24c609fd6f77c49&imgtype=0&src=http%3A%2F%2Fimg.tupianzj.com%2Fuploads%2Fallimg%2F160610%2F9-160610114520.jpg'),
+                              'https://cdn.duitang.com/uploads/item/201408/11/20140811200850_LUY5c.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
