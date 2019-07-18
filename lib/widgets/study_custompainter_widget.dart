@@ -177,16 +177,17 @@ class CustomTimeClock extends CustomPainter {
       canvas.restore();
       canvas.rotate(deg2Rad(30));
     }
-    //绘制指针
+    //绘制指针,这个也好理解
     int hours = DateTime.now().hour;
     int minutes = DateTime.now().minute;
     int seconds = DateTime.now().second;
     print("时: ${hours} 分：${minutes} 秒: ${seconds}");
     //时针角度//以下都是以12点为0°参照
-    double hoursAngle = (minutes / 60 + hours - 12) * math.pi / 6;
-    //分针走过的角度
+    //12小时转360°所以一小时30°
+    double hoursAngle = (minutes / 60 + hours - 12) * math.pi / 6;//把分钟转小时之后*（2*pi/360*30）
+    //分针走过的角度,同理
     double minutesAngle = (minutes + seconds / 60) * math.pi / 30;
-    //秒针走过的角度
+    //秒针走过的角度,同理
     double secondsAngle = seconds * math.pi / 30;
     //画时针
     _linePaint.strokeWidth = 4;
@@ -194,12 +195,12 @@ class CustomTimeClock extends CustomPainter {
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 80), _linePaint);
     //画分针
     _linePaint.strokeWidth = 2;
-    canvas.rotate(-hoursAngle);
+    canvas.rotate(-hoursAngle);//先把之前画时针的角度还原。
     canvas.rotate(minutesAngle);
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 60), _linePaint);
     //画秒针
     _linePaint.strokeWidth = 1;
-    canvas.rotate(-minutesAngle);
+    canvas.rotate(-minutesAngle);//同理
     canvas.rotate(secondsAngle);
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 30), _linePaint);
   }
