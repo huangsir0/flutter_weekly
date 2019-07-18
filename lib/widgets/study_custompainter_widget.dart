@@ -185,9 +185,9 @@ class CustomTimeClock extends CustomPainter {
     //时针角度//以下都是以12点为0°参照
     //12小时转360°所以一小时30°
     double hoursAngle = (minutes / 60 + hours - 12) * math.pi / 6;//把分钟转小时之后*（2*pi/360*30）
-    //分针走过的角度,同理
-    double minutesAngle = (minutes + seconds / 60) * math.pi / 30;
-    //秒针走过的角度,同理
+    //分针走过的角度,同理,一分钟6°
+    double minutesAngle = (minutes + seconds / 60) * math.pi / 30;//(2*pi/360*6)
+    //秒针走过的角度,同理,一秒钟6°
     double secondsAngle = seconds * math.pi / 30;
     //画时针
     _linePaint.strokeWidth = 4;
