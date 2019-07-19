@@ -40,22 +40,6 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       },
     );
 
-    bottomWidget=new SizeWidget(
-      key: _sizeWidgetKey,
-        child: new BottomNavigationBar(
-          items: [
-            _buildBottomItem(Icons.home, Tabs[0]),
-            _buildBottomItem(Icons.phone_iphone, Tabs[1]),
-            _buildBottomItem(Icons.ac_unit, Tabs[2]),
-            _buildBottomItem(Icons.phone_android, Tabs[3]),
-          ],
-          currentIndex: _curIndex,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            _pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 300), curve: Curves.ease);
-          },
-        ));
 
   }
 
@@ -79,9 +63,26 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    bottomWidget=new SizeWidget(
+        key: this._sizeWidgetKey,
+        child: new BottomNavigationBar(
+          items: [
+            _buildBottomItem(Icons.home, Tabs[0]),
+            _buildBottomItem(Icons.phone_iphone, Tabs[1]),
+            _buildBottomItem(Icons.ac_unit, Tabs[2]),
+            _buildBottomItem(Icons.phone_android, Tabs[3]),
+          ],
+          currentIndex: _curIndex,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            _pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          },
+        ));
+
     return new Scaffold(
       body: _body,
-      bottomNavigationBar: bottomWidget,
+      bottomNavigationBar:  bottomWidget,
     );
   }
 
@@ -102,9 +103,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 1:
         return new TestBPageView();
       case 2:
-        return new TimeClockWidget();
+        return new TestCPageView();
       case 3:
-        return new PaintWidget();
+        return new TestDPageView();
     }
   }
 
