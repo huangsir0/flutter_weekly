@@ -15,10 +15,8 @@ class GanksScene extends StatefulWidget {
 }
 
 class _GanksSceneState extends State<GanksScene>
-    with TickerProviderStateMixin,AutomaticKeepAliveClientMixin
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin
     implements IMainView {
-
-
   List<String> tabs = new List();
 
   MainPresenter mainPresenter;
@@ -31,14 +29,10 @@ class _GanksSceneState extends State<GanksScene>
     _init();
   }
 
-
-
-
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
   }
 
   void _init() {
@@ -111,6 +105,9 @@ class _GanksSceneState extends State<GanksScene>
     // TODO: implement onLoadSuc
     setState(() {
       tabs.clear();
+      titles.sort((String before, String behind) {
+        return behind.startsWith('福利')?1:-1;//把福利排最前面
+      });
       tabs.addAll(titles);
       print(titles);
     });

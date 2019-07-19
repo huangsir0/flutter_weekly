@@ -22,9 +22,6 @@ class DioFactory {
     _dio = new Dio(options);
   }
 
-  getDio() {
-    return _dio;
-  }
 
   static DioFactory _getInstance() {
     if (null == _instance) {

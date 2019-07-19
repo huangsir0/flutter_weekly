@@ -25,8 +25,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_redux: ^0.5.3
   dio: ^2.1.10
-  flutter_easyrefresh: ^1.2.7
   webview_flutter: ^0.3.10+2
+  flutter_staggered_grid_view: ^0.3.0
+  cached_network_image: ^1.1.0
 
 dev_dependencies:
   flutter_test:
