@@ -142,7 +142,7 @@ class _CommonSceneState extends State<CommonScene>
           return InkWell(
             onTap: () => _onItemClick(data),
             child: Container(
-              height: 200,
+              height: 180,
               width: double.infinity,
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -154,7 +154,7 @@ class _CommonSceneState extends State<CommonScene>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new Padding(
-                    padding: EdgeInsets.only(left: 10, top: 15),
+                    padding: EdgeInsets.only(left: 4,top: 10),
                     child: Text(
                       '${data.type}',
                       style: Theme.of(context)
@@ -166,7 +166,7 @@ class _CommonSceneState extends State<CommonScene>
                     ),
                   ),
                   new Padding(
-                    padding: EdgeInsets.only(left: 10, top: 20, right: 60),
+                    padding: EdgeInsets.only(left: 4, top: 10, right: 60),
                     child: Text(
                       data.desc,
                       style: Theme.of(context).textTheme.headline,
@@ -175,7 +175,7 @@ class _CommonSceneState extends State<CommonScene>
                     ),
                   ),
                   new Padding(
-                    padding: EdgeInsets.only(left: 10, top: 80, right: 10),
+                    padding: EdgeInsets.only(left: 10, top: 70, right: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[

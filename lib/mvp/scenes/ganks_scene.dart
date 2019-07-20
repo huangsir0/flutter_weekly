@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/common/utils/common_util.dart';
 import 'package:flutter_weekly/consts/config.dart';
 import 'package:flutter_weekly/mvp/constract/maincontract.dart';
 import 'package:flutter_weekly/widgets/loading_widget.dart';
@@ -53,21 +54,15 @@ class _GanksSceneState extends State<GanksScene>
                   return <Widget>[
                     new SliverAppBar(
                       //appbar标题
-                      title: Text('Ganks'),
+                      title: Text(
+                        'Ganks',
+                      ),
                       //列表在滚动的时候appbar是否一直保持可见
                       pinned: true,
                       flexibleSpace: FlexibleSpaceBar(
                           centerTitle: true,
                           background: Container(
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                              Colors.deepOrange[900],
-                              Colors.deepOrange[800],
-                              Colors.deepOrange[700],
-                              Colors.deepOrange[600],
-                              Colors.deepOrange[500],
-                            ])),
                           )),
                       forceElevated: innerBoxIsScrolled,
                       floating: true,
@@ -86,7 +81,7 @@ class _GanksSceneState extends State<GanksScene>
                       // 当 SliverAppBar 和内容同级的时候，该值为 0， 当内容滚动 SliverAppBar 变为 Toolbar 的时候，修改 elevation 的值
                       elevation: 1,
                       //展开高度
-                      expandedHeight: 200,
+                      expandedHeight: 100,
                     ),
                   ];
                 },
