@@ -26,6 +26,7 @@ class _GanksSceneState extends State<GanksScene>
     // TODO: implement initState
     super.initState();
     mainPresenter = new MainPresenter()..init(this);
+
     _init();
   }
 
@@ -52,17 +53,22 @@ class _GanksSceneState extends State<GanksScene>
                   return <Widget>[
                     new SliverAppBar(
                       //appbar标题
-                      title: const Text('Ganks'),
+                      title: Text('Ganks'),
                       //列表在滚动的时候appbar是否一直保持可见
                       pinned: true,
                       flexibleSpace: FlexibleSpaceBar(
-                        centerTitle: true,
-                        background: Image(
-                          image: NetworkImage(
-                              'https://cdn.duitang.com/uploads/item/201408/11/20140811200850_LUY5c.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          centerTitle: true,
+                          background: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                              Colors.deepOrange[900],
+                              Colors.deepOrange[800],
+                              Colors.deepOrange[700],
+                              Colors.deepOrange[600],
+                              Colors.deepOrange[500],
+                            ])),
+                          )),
                       forceElevated: innerBoxIsScrolled,
                       floating: true,
                       //与floating结合使用
@@ -106,7 +112,7 @@ class _GanksSceneState extends State<GanksScene>
     setState(() {
       tabs.clear();
       titles.sort((String before, String behind) {
-        return behind.startsWith('福利')?1:-1;//把福利排最前面
+        return behind.startsWith('福利') ? 1 : -1; //把福利排最前面
       });
       tabs.addAll(titles);
       print(titles);

@@ -47,11 +47,11 @@ class _CommonSceneState extends State<CommonScene>
   }
 
   _onScrollNotification(ScrollNotification scrollInfo) {
-    print("pixels=>" + scrollInfo.metrics.pixels.toString());
-    print("minScrollExtent=>" + scrollInfo.metrics.minScrollExtent.toString());
-    print("maxScrollExtent=>" + scrollInfo.metrics.maxScrollExtent.toString());
-    print("extentBefore=>" + scrollInfo.metrics.extentBefore.toString());
-    print("extentAfter=>" + scrollInfo.metrics.extentAfter.toString());
+   // print("pixels=>" + scrollInfo.metrics.pixels.toString());
+   // print("minScrollExtent=>" + scrollInfo.metrics.minScrollExtent.toString());
+   // print("maxScrollExtent=>" + scrollInfo.metrics.maxScrollExtent.toString());
+   // print("extentBefore=>" + scrollInfo.metrics.extentBefore.toString());
+  //  print("extentAfter=>" + scrollInfo.metrics.extentAfter.toString());
     if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
       //滑到了底部
       _onLoadMore();

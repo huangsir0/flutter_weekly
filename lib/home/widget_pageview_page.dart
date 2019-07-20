@@ -3,6 +3,7 @@ import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_b_page.dart';
 import 'package:flutter_weekly/home/widget_c_page.dart';
 import 'package:flutter_weekly/home/widget_d_page.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
 import 'package:flutter_weekly/widgets/study_custompainter_widget.dart';
 
@@ -101,11 +102,11 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 0:
         return new GanksScene(onScroll);
       case 1:
-        return new TestBPageView();
+        return new WidgetContainerPage();
       case 2:
-        return new TestCPageView();
+        return new PaintWidget();
       case 3:
-        return new TestDPageView();
+        return new TimeClockWidget();
     }
   }
 

@@ -166,7 +166,7 @@ class CustomTimeClock extends CustomPainter {
     //方法二:绘制数字,
     for (int i = 0; i < 12; i++) {
       canvas.save();
-      canvas.translate(0.0, -_bigRadius);
+      canvas.translate(0.0, -_bigRadius+30);
       _textPainter.text = TextSpan(
           style: new TextStyle(color: Colors.deepOrange, fontSize: 22),
           text: i.toString());
