@@ -41,7 +41,7 @@ class CommonUtils {
 
   static List<ColorGradient> getColorGradients(){
     return[
-      ColorGradient(colorName:"1",colors: [Color(0xFFABDCFF),Color(0xFF0396FF)]),
+      ColorGradient(colorName:"1",colors: [Color(0xFFABDCFF),Color(0xFFA4D9FF),Color(0xFF8ACEFF),Color(0xFF61BDFF),Color(0xFF0396FF)]),
     ];
   }
 
