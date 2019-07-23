@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/common/utils/common_util.dart';
 
 class WidgetContainerPage extends StatefulWidget {
   @override
@@ -12,18 +13,24 @@ class _ContainerPageState extends State<WidgetContainerPage> {
         appBar: AppBar(
           title: Text("Container控件"),
         ),
-        body: new SingleChildScrollView(
+        body:Center(
+          child: Container(
+            height: 300,
+            width: 300,
+            decoration: BoxDecoration(gradient: CommonUtils.getColorGradients()[0].gradient),
+           // color: Color.lerp(Color(0xFFCE9FFC), Color(0xFF7367F0), 0.3),
+          ),
+        )/*new SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 child: Text('Hello world'),
+                margin: const EdgeInsets.only(top: 10),
                 color: Colors.orange[100],
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Theme.of(context).primaryColor,
                 padding: EdgeInsets.only(
                     left: 10.0, right: 50.0, top: 10.0, bottom: 30),
@@ -32,10 +39,8 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   child: Text("this.padding"),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Theme.of(context).primaryColor,
                 padding: EdgeInsets.only(
                     left: 10.0, right: 50.0, top: 10.0, bottom: 30),
@@ -44,10 +49,8 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   child: Text("this.margin"),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Theme.of(context).primaryColor,
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -56,28 +59,15 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   child: Text("this.margin"),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
-                width: 200.0,
-                height: 100.0,
-                color: Colors.orange[100],
-                child: Text('width = 200,height = 100'),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Colors.orange[100],
                 alignment: Alignment.bottomRight,
                 height: 100,
                 child: Text('Alignment.bottomRight'),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Theme.of(context).primaryColor,
                 height: 100.0,
                 alignment: AlignmentDirectional.bottomEnd,
@@ -86,10 +76,8 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   textDirection: TextDirection.ltr,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Colors.orange[100],
                 height: 100.0,
                 alignment: AlignmentDirectional.bottomEnd,
@@ -98,18 +86,21 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   textDirection: TextDirection.rtl,
                 ),
               ),
-              SizedBox(
-                height: 10,
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                width: 200.0,
+                height: 100.0,
+                color: Colors.orange[100],
+                child: Text('width = 200,height = 100'),
               ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 color: Theme.of(context).primaryColor,
                 constraints: BoxConstraints.expand(height: 50.0),
                 child: Text('BoxConstraints constraints'),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 constraints: BoxConstraints.expand(height: 100.0),
                 padding: EdgeInsets.all(10.0),
                 decoration: ShapeDecoration(
@@ -124,10 +115,8 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                     ]),
                 child: Text('ShapeDecoration'),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 constraints: BoxConstraints.expand(height: 200),
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
@@ -148,19 +137,15 @@ class _ContainerPageState extends State<WidgetContainerPage> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                 constraints: BoxConstraints.expand(height: 100, width: 100),
                 color: Colors.orange[100],
                 child: Text('This.transform'),
               ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
+                margin: const EdgeInsets.only(top: 10),
                 padding: EdgeInsets.only(top: 10, left: 10),
                 constraints: BoxConstraints.expand(width: 100, height: 100),
                 color: Colors.orange[100],
@@ -169,6 +154,6 @@ class _ContainerPageState extends State<WidgetContainerPage> {
               ),
             ],
           ),
-        ));
+        )*/);
   }
 }

@@ -103,7 +103,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 0:
         return new GanksScene(onScroll);
       case 1:
-        return new CustomBezierWidget();
+        return new WidgetContainerPage();
       case 2:
         return new PaintWidget();
       case 3:
