@@ -31,8 +31,7 @@ class _WidgetSettingPageState extends State<WidgetSettingPage> {
                   onPressed: () {
                     ThemeData themeData;
                     List<Color> colors = CommonUtils.getThemeListColor();
-                    themeData = new ThemeData(
-                        primaryColor: colors[new Random().nextInt(colors.length)]);
+                    themeData =store.state.themeData.copyWith(primaryColor: colors[new Random().nextInt(colors.length)]) ;
                     store.dispatch(new RefreshThemeDataAction(themeData));
                   },
                   child: new Text("随机切换颜色"),
