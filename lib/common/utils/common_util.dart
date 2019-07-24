@@ -4,7 +4,7 @@ import 'package:flutter_weekly/common/styles/color_style.dart';
 class CommonUtils {
   static getThemeData(Color color) {
     var themData = ThemeData(
-      primarySwatch: color,
+      primaryColor: color,
       fontFamily: null, //'XiaRiFengGe',//'''ZCOOLKuaiLe',
       backgroundColor: Colors.white,
       textTheme: TextTheme(
@@ -27,38 +27,53 @@ class CommonUtils {
   }
 
   static List<Color> getThemeListColor() {
+    return getColorGradients().map((ColorGradient gradient) {return gradient.color() ;}).toList();
+  }
+
+  static List<ColorGradient> getColorGradients() {
     return [
-      GlobalColors.primarySwatch,
-      Colors.brown,
-      Colors.blue,
-      Colors.teal,
-      Colors.amber,
-      Colors.blueGrey,
-      Colors.deepOrange,
+      ColorGradient(colorName: "0", colors: [
+        Color.lerp(Color(0xFFABDCFF), Color(0xFF0396FF), 0.4),
+        Color(0xFF0396FF)
+      ]),
+      ColorGradient(colorName: "1", colors: [
+        Color.lerp(Color(0xFFFFF6B7), Color(0xFFF6416C), 0.4),
+        Color(0xFFF6416C)
+      ]),
+      ColorGradient(colorName: "2", colors: [
+        Color.lerp(Color(0xFFE2B0FF), Color(0xFF9F44D3), 0.4),
+        Color(0xFF9F44D3)
+      ]),
+      ColorGradient(colorName: "3", colors: [
+        Color.lerp(Color(0xFF3C8CE7), Color(0xFF00EAFF), 0.8),
+        Color(0xFF3C8CE7)
+      ]),
+      ColorGradient(colorName: "4", colors: [
+        Color.lerp(Color(0xFFF6CEEC), Color(0xFFD939CD), 0.4),
+        Color(0xFFD939CD)
+      ]),
+      ColorGradient(colorName: "5", colors: [
+        Color.lerp(Color(0xFF90F7EC), Color(0xFF32CCBC), 0.4),
+        Color(0xFF32CCBC)
+      ]),
     ];
   }
-
-
-  static List<ColorGradient> getColorGradients(){
-    return[
-      ColorGradient(colorName:"1",colors: [Color(0xFFABDCFF),Color(0xFFA4D9FF),Color(0xFF8ACEFF),Color(0xFF61BDFF),Color(0xFF0396FF)]),
-    ];
-  }
-
-
 }
 
-
-
 //自定义Color类
-class ColorGradient{
+class ColorGradient {
   final String colorName;
 
   final List<Color> colors;
 
   ColorGradient({this.colorName, this.colors});
 
-  ///
-  get  gradient =>LinearGradient(colors: this.colors);
+  //Color
+  Color color() => Color.lerp(this.colors[0], this.colors[1], 0.5);
 
+  ///
+  get gradient => LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: this.colors);
 }

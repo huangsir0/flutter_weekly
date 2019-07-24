@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GlobalColors{
+class GlobalDef{
 
-  static const MaterialColor primarySwatch = Colors.deepOrange;
 
 
 }

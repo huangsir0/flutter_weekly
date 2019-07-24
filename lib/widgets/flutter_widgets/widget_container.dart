@@ -17,7 +17,7 @@ class _ContainerPageState extends State<WidgetContainerPage> {
           child: Container(
             height: 300,
             width: 300,
-            decoration: BoxDecoration(gradient: CommonUtils.getColorGradients()[0].gradient),
+            decoration: BoxDecoration(gradient: CommonUtils.getColorGradients()[2].gradient),
            // color: Color.lerp(Color(0xFFCE9FFC), Color(0xFF7367F0), 0.3),
           ),
         )/*new SingleChildScrollView(

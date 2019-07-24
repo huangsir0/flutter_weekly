@@ -6,6 +6,7 @@ import 'common/global_stage.dart';
 import 'common/styles/color_style.dart';
 import 'common/utils/common_util.dart';
 import 'common/utils/screen.dart';
+import 'dart:math' as math;
 
 void main() {
   runApp(new FlutterStudyApp());
@@ -17,11 +18,10 @@ class FlutterStudyApp extends StatelessWidget {
   //initialStage 初始化Stage
   final store = new Store<GlobalStage>(appReducer,
       initialState: new GlobalStage(
-          themeData: CommonUtils.getThemeData(GlobalColors.primarySwatch)));
+          themeData: CommonUtils.getThemeData(CommonUtils.getThemeListColor()[
+              math.Random().nextInt(CommonUtils.getThemeListColor().length)])));
 
   FlutterStudyApp({Key key}) : super(key: key);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class FlutterStudyApp extends StatelessWidget {
         child: new StoreBuilder<GlobalStage>(builder: (context, store) {
           return new MaterialApp(
               theme: store.state.themeData,
-              home: new HomePageView()//new HomePage(),
-          );
+              home: new HomePageView() //new HomePage(),
+              );
         }));
   }
 }

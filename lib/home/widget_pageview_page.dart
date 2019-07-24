@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_b_page.dart';
 import 'package:flutter_weekly/home/widget_c_page.dart';
-import 'package:flutter_weekly/home/widget_d_page.dart';
+import 'package:flutter_weekly/home/widget_setting_page.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
 import 'package:flutter_weekly/widgets/study_bezierpainter_widget.dart';
@@ -23,7 +23,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   final GlobalKey<SizeWidgetState> _sizeWidgetKey=new GlobalKey();
 
-  List<String> Tabs = ["Gank", "Example", "Study", "Android"];
+  List<String> Tabs = ["Gank", "Widgets", "Example", "Setting"];
 
   //主要用于控制BottomNavigationBar显示隐藏
   SizeWidget bottomWidget;
@@ -70,9 +70,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
         child: new BottomNavigationBar(
           items: [
             _buildBottomItem(Icons.home, Tabs[0]),
-            _buildBottomItem(Icons.phone_iphone, Tabs[1]),
+            _buildBottomItem(Icons.widgets, Tabs[1]),
             _buildBottomItem(Icons.ac_unit, Tabs[2]),
-            _buildBottomItem(Icons.phone_android, Tabs[3]),
+            _buildBottomItem(Icons.settings, Tabs[3]),
           ],
           currentIndex: _curIndex,
           type: BottomNavigationBarType.fixed,
@@ -107,7 +107,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 2:
         return new PaintWidget();
       case 3:
-        return new TimeClockWidget();
+        return new WidgetSettingScene();
     }
   }
 
