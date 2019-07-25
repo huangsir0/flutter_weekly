@@ -3,10 +3,10 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/home/widget_pageview_page.dart';
 import 'package:redux/redux.dart';
 import 'common/global_stage.dart';
-import 'common/styles/color_style.dart';
 import 'common/utils/common_util.dart';
 import 'common/utils/screen.dart';
 import 'dart:math' as math;
+import 'example1/scroll_app.dart';
 
 void main() {
   runApp(new FlutterStudyApp());
@@ -16,10 +16,13 @@ void main() {
 class FlutterStudyApp extends StatelessWidget {
   //创建Store，引用Global 中的appReducer 创建Reducer
   //initialStage 初始化Stage
+  static final index =
+      math.Random().nextInt(CommonUtils.getThemeListColor().length);
   final store = new Store<GlobalStage>(appReducer,
       initialState: new GlobalStage(
-          themeData: CommonUtils.getThemeData(CommonUtils.getThemeListColor()[
-              math.Random().nextInt(CommonUtils.getThemeListColor().length)])));
+          themeData:
+              CommonUtils.getThemeData(CommonUtils.getThemeListColor()[index]),
+          colorGradient: CommonUtils.getColorGradients()[index]));
 
   FlutterStudyApp({Key key}) : super(key: key);
 
@@ -37,4 +40,4 @@ class FlutterStudyApp extends StatelessWidget {
         }));
   }
 }
-//x
+

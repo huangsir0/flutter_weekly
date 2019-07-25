@@ -1,16 +1,45 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
 import 'package:flutter_weekly/common/utils/screen.dart';
-class CustomBezierWidget extends StatelessWidget {
-
+class CustomBezierWidget extends StatefulWidget {
 
 
   @override
+  _BezierWidgetState createState() {
+    // TODO: implement createState
+    return _BezierWidgetState();
+  }
+}
+
+class _BezierWidgetState extends State<CustomBezierWidget> {
+  Timer timer;
+
+  int height=200;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        height=height-5;
+        if(height==-200)timer.cancel();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-    painter: BezierPainter(),
-    );
+    return CustomPaint(painter: BezierPainter(height));
   }
 }
 
@@ -18,26 +47,35 @@ class CustomBezierWidget extends StatelessWidget {
 
 class BezierPainter extends CustomPainter{
 
-  Paint _paint=Paint()..color=Colors.deepOrange..style=PaintingStyle.fill..isAntiAlias=true..strokeWidth=1;
+  final int height;
+
+  BezierPainter(this.height);
+
+  Paint _paint=Paint()..color=Colors.deepOrange..style=PaintingStyle.fill..isAntiAlias=true..strokeWidth=10;
 
   Path _path=Path();
 
 
-  Offset offset1=Offset(10, Screen.screenHeightDp-80);
+  Offset offset1=Offset(0, Screen.screenHeightDp/2);
 
-  Offset offset2=Offset(Screen.screenWidthDp, Screen.screenHeightDp-80);
+  Offset offset2=Offset(Screen.screenWidthDp/2, Screen.screenHeightDp/2);
 
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
-    _path.lineTo(100, 200);
-    canvas.drawPoints(PointMode.points, [Offset(100,100)], _paint);
-    canvas.drawPath(_path, _paint);
-    _path.moveTo(offset1.dx,offset1.dy);
+
+    _path.moveTo(0,Screen.screenHeightDp/2);
     _paint.color=Colors.deepOrange;
-    _path.cubicTo(offset1.dx, offset1.dy, Screen.screenWidthDp/6,Screen.screenHeightDp/2+100, offset2.dx, offset2.dy);
-    canvas.drawPath(_path, _paint);
-    _path.cubicTo(offset1.dx, offset1.dy, Screen.screenWidthDp/6,Screen.screenHeightDp/2+100, offset2.dx, offset2.dy);
+    //canvas.drawPoints(PointMode.points, [Offset(Screen.screenWidthDp,Screen.screenHeightDp/2),offset1,offset2], _paint);
+    _path.quadraticBezierTo(Screen.screenWidthDp/4, Screen.screenHeightDp/2+this.height, Screen.screenWidthDp/2,Screen.screenHeightDp/2);
+
+    canvas.save();
+    canvas.restore();
+
+
+    _path.moveTo(Screen.screenWidthDp/2,Screen.screenHeightDp/2);
+    _path.quadraticBezierTo(Screen.screenWidthDp/4*3,  Screen.screenHeightDp/2-this.height, Screen.screenWidthDp,Screen.screenHeightDp/2);
+
     canvas.drawPath(_path, _paint);
     //canvas.drawLine(Offset(0, 0), Offset(0, 20), _paint);
   }

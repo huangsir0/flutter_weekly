@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'delay_tween.dart';
 
 class WaitingWidget extends StatefulWidget  {
+
+  final Color color;
+
+
+  WaitingWidget(this.color);
+
   @override
   _WaitingWidgetState createState() => _WaitingWidgetState();
 }
@@ -62,7 +68,7 @@ class _WaitingWidgetState extends State<WaitingWidget> with SingleTickerProvider
       size: Size(_size, _size*2),
       child: Container(
         alignment: Alignment.center,
-        child: Text(char,style: TextStyle(fontSize: 26),),
+        child: Text(char,style: TextStyle(fontSize: 26,color: this.widget.color),),
       ),
     ),
     );

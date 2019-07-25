@@ -23,10 +23,7 @@ class BeautyHero extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                fit: BoxFit.fill,
-              ),
+              child: Image.network(imageUrl,fit: BoxFit.fill,)
             ),
             onTap: onTap,
           ),))

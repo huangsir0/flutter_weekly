@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/home/widget_example_scene.dart';
+import 'package:flutter_weekly/home/widget_scene.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
-import 'package:flutter_weekly/home/widget_b_page.dart';
-import 'package:flutter_weekly/home/widget_c_page.dart';
-import 'package:flutter_weekly/home/widget_setting_page.dart';
+import 'package:flutter_weekly/home/widget_setting_scene.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
 import 'package:flutter_weekly/widgets/study_bezierpainter_widget.dart';
@@ -19,11 +19,12 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
 
   var _body;
 
+
   var _pageController = new PageController(initialPage: 0);
 
   final GlobalKey<SizeWidgetState> _sizeWidgetKey=new GlobalKey();
 
-  List<String> Tabs = ["Gank", "Widgets", "Example", "Setting"];
+  List<String> Tabs = ["Gank", "Widgets", "Example", "Settings"];
 
   //主要用于控制BottomNavigationBar显示隐藏
   SizeWidget bottomWidget;
@@ -103,9 +104,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
       case 0:
         return new GanksScene(onScroll);
       case 1:
-        return new WidgetContainerPage();
+        return new CustomBezierWidget();
       case 2:
-        return new PaintWidget();
+        return new WidgetExampleScene();
       case 3:
         return new WidgetSettingScene();
     }

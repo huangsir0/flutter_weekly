@@ -73,6 +73,10 @@ class CustomCirclesPainter extends CustomPainter {
 
 //////////////////////////////////////////////以下是时钟的代码///////////////////////
 class TimeClockWidget extends StatefulWidget {
+  final Color color;
+
+  TimeClockWidget(this.color);
+
   @override
   _TimeClockWidgetState createState() => _TimeClockWidgetState();
 }
@@ -98,24 +102,36 @@ class _TimeClockWidgetState extends State<TimeClockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CustomPaint(painter: CustomTimeClock()));
+    return Center(
+        child: CustomPaint(painter: CustomTimeClock(this.widget.color)));
   }
 }
 
 class CustomTimeClock extends CustomPainter {
+
+  CustomTimeClock(this.color) {
+    //大外圆
+    _bigCirclePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..isAntiAlias = true
+      ..color = color
+      ..strokeWidth = 4;
+
+    //粗刻度线
+    _linePaint = Paint()
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true
+      ..color = color
+      ..strokeWidth = 4;
+  }
+
+  final Color color;
+
   //大外圆
-  Paint _bigCirclePaint = Paint()
-    ..style = PaintingStyle.stroke
-    ..isAntiAlias = true
-    ..color = Colors.deepOrange
-    ..strokeWidth = 4;
+  Paint _bigCirclePaint;
 
   //粗刻度线
-  Paint _linePaint = Paint()
-    ..style = PaintingStyle.fill
-    ..isAntiAlias = true
-    ..color = Colors.deepOrange
-    ..strokeWidth = 4;
+  Paint _linePaint;
 
   //圆心
   Offset _centerOffset = Offset(0, 0);
@@ -140,7 +156,7 @@ class CustomTimeClock extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
-    print('_bigRadius: ${_bigRadius}');
+    print('_bigRadius: ${_bigRadius.toString()}');
     //绘制大圆
     canvas.drawCircle(_centerOffset, _bigRadius, _bigCirclePaint);
     //绘制圆心
@@ -166,7 +182,7 @@ class CustomTimeClock extends CustomPainter {
     //方法二:绘制数字,
     for (int i = 0; i < 12; i++) {
       canvas.save();
-      canvas.translate(0.0, -_bigRadius+30);
+      canvas.translate(0.0, -_bigRadius + 30);
       _textPainter.text = TextSpan(
           style: new TextStyle(color: Colors.deepOrange, fontSize: 22),
           text: i.toString());
@@ -181,12 +197,14 @@ class CustomTimeClock extends CustomPainter {
     int hours = DateTime.now().hour;
     int minutes = DateTime.now().minute;
     int seconds = DateTime.now().second;
-    print("时: ${hours} 分：${minutes} 秒: ${seconds}");
+    print("时: ${hours.toString()} 分：${minutes.toString()} 秒: ${seconds.toString()}");
     //时针角度//以下都是以12点为0°参照
     //12小时转360°所以一小时30°
-    double hoursAngle = (minutes / 60 + hours - 12) * math.pi / 6;//把分钟转小时之后*（2*pi/360*30）
+    double hoursAngle =
+        (minutes / 60 + hours - 12) * math.pi / 6; //把分钟转小时之后*（2*pi/360*30）
     //分针走过的角度,同理,一分钟6°
-    double minutesAngle = (minutes + seconds / 60) * math.pi / 30;//(2*pi/360*6)
+    double minutesAngle =
+        (minutes + seconds / 60) * math.pi / 30; //(2*pi/360*6)
     //秒针走过的角度,同理,一秒钟6°
     double secondsAngle = seconds * math.pi / 30;
     //画时针
@@ -195,12 +213,12 @@ class CustomTimeClock extends CustomPainter {
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 80), _linePaint);
     //画分针
     _linePaint.strokeWidth = 2;
-    canvas.rotate(-hoursAngle);//先把之前画时针的角度还原。
+    canvas.rotate(-hoursAngle); //先把之前画时针的角度还原。
     canvas.rotate(minutesAngle);
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 60), _linePaint);
     //画秒针
     _linePaint.strokeWidth = 1;
-    canvas.rotate(-minutesAngle);//同理
+    canvas.rotate(-minutesAngle); //同理
     canvas.rotate(secondsAngle);
     canvas.drawLine(Offset(0, 0), new Offset(0, -_bigRadius + 30), _linePaint);
   }

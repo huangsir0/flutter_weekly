@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weekly/common/utils/common_util.dart';
 
 class WidgetContainerPage extends StatefulWidget {
   @override
@@ -13,14 +12,8 @@ class _ContainerPageState extends State<WidgetContainerPage> {
         appBar: AppBar(
           title: Text("Container控件"),
         ),
-        body:Center(
-          child: Container(
-            height: 300,
-            width: 300,
-            decoration: BoxDecoration(gradient: CommonUtils.getColorGradients()[2].gradient),
-           // color: Color.lerp(Color(0xFFCE9FFC), Color(0xFF7367F0), 0.3),
-          ),
-        )/*new SingleChildScrollView(
+        body: Center(
+            child: new SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -154,6 +147,6 @@ class _ContainerPageState extends State<WidgetContainerPage> {
               ),
             ],
           ),
-        )*/);
+        )));
   }
 }

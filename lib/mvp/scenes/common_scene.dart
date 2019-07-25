@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_weekly/common/global_stage.dart';
 import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
 import 'package:flutter_weekly/mvp/scenes/webview_scene.dart';
@@ -6,16 +8,19 @@ import 'package:flutter_weekly/widgets/beauty_widget.dart';
 import 'package:flutter_weekly/widgets/loading_widget.dart';
 import '../common_presenter.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import 'beautydetail_scene.dart';
+
 
 class CommonScene extends StatefulWidget {
   final String url;
 
-  ValueChanged<bool> onScrollAction;
+  final num tag;
 
-  CommonScene(this.url, this.onScrollAction);
+  final Key key;
+  final ValueChanged<bool> onScrollAction;
+
+  CommonScene(this.key, this.url, this.onScrollAction,this.tag);
 
   @override
   _CommonSceneState createState() => _CommonSceneState();
@@ -43,6 +48,7 @@ class _CommonSceneState extends State<CommonScene>
     // TODO: implement initState
     super.initState();
     commonPresenter = new CommonPresenter()..init(this);
+    print("initState===========>${this.widget.url}");
     _onRefresh();
   }
 
@@ -52,7 +58,8 @@ class _CommonSceneState extends State<CommonScene>
    // print("maxScrollExtent=>" + scrollInfo.metrics.maxScrollExtent.toString());
    // print("extentBefore=>" + scrollInfo.metrics.extentBefore.toString());
   //  print("extentAfter=>" + scrollInfo.metrics.extentAfter.toString());
-    if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
+    //print("scrollInfo===========>${this.widget.url}+ ${DefaultTabController.of(context).index.toString()};");
+    if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent&&this.widget.tag==DefaultTabController.of(context).index) {
       //滑到了底部
       _onLoadMore();
       if (this.widget.onScrollAction != null) {
@@ -70,20 +77,25 @@ class _CommonSceneState extends State<CommonScene>
 
   @override
   Widget build(BuildContext context) {
-    return datas.length == 0
-        ? WaitingWidget()
-        : Center(
-            child: NotificationListener<ScrollNotification>(
-              child: new RefreshIndicator(
-                  child: MediaQuery.removePadding(
-                    context: context,
-                    child: _getViewType(this.widget.url),
-                  ),
-                  onRefresh: _onRefresh),
-              onNotification: (ScrollNotification scrollInfo) =>
-                  _onScrollNotification(scrollInfo),
-            ),
-          );
+    super.build(context);
+    return StoreBuilder<GlobalStage>(key: this.widget.key,
+      builder: (context,store){
+        return datas.length == 0
+            ? WaitingWidget(store.state.themeData.primaryColor)
+            : Center(
+          child: NotificationListener<ScrollNotification>(
+            child: new RefreshIndicator(
+                child: MediaQuery.removePadding(
+                  context: context,
+                  child: _getViewType(this.widget.url,store.state.themeData.primaryColor),
+                ),
+                onRefresh: _onRefresh),
+            onNotification: (ScrollNotification scrollInfo) =>
+                _onScrollNotification(scrollInfo),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -97,6 +109,7 @@ class _CommonSceneState extends State<CommonScene>
     datas.forEach((data) {
       print("----" + data.toString());
     });
+    if(!mounted)return null;
     setState(() {
       if (isLoadMore) {
         datas.addAll(domains);
@@ -105,6 +118,7 @@ class _CommonSceneState extends State<CommonScene>
         datas.addAll(domains);
       }
     });
+    return null;
   }
 
   Future<void> _onRefresh() async {
@@ -125,7 +139,7 @@ class _CommonSceneState extends State<CommonScene>
     // TODO: implement showLoading
   }
 
-  Widget _getItemView(BuildContext context, int index) {
+  Widget _getItemView(BuildContext context, int index,Color color) {
     if (index < datas.length) {
       CommonBean data = datas[index];
       switch (this.widget.url) {
@@ -197,18 +211,18 @@ class _CommonSceneState extends State<CommonScene>
           );
       }
     } else {
-      return _getLoadMoreView();
+      return _getLoadMoreView(color);
     }
   }
 
-  Widget _getLoadMoreView() {
+  Widget _getLoadMoreView(Color color) {
     return Container(
       height: 60,
       width: double.infinity,
       alignment: Alignment.center,
       child: Opacity(
         opacity: isLoadMore ? 1.0 : 0.0,
-        child: WaitingWidget(),
+        child: WaitingWidget(color),
       ),
     );
   }
@@ -223,14 +237,14 @@ class _CommonSceneState extends State<CommonScene>
     }));
   }
 
-  Widget _getViewType(String url) {
+  Widget _getViewType(String url,Color color) {
     switch (url) {
       case 'data/福利':
         //此处引用瀑布流布局
         return new StaggeredGridView.countBuilder(
           crossAxisCount: 2,
           itemBuilder: (BuildContext context, int index) {
-            return _getItemView(context, index);
+            return _getItemView(context, index,color);
           },
           staggeredTileBuilder: (int index) {
             return StaggeredTile.fit(1);
@@ -242,10 +256,25 @@ class _CommonSceneState extends State<CommonScene>
       default:
         return new ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return _getItemView(context, index);
+            return _getItemView(context, index,color);
           },
           itemCount: datas.length + 1, //+1为加载更多时候的视图
         );
     }
+  }
+
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    print("deactivate===========>${this.widget.url}");
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("dispose===========>${this.widget.url}");
   }
 }

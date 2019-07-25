@@ -17,8 +17,6 @@ class SizeWidgetState extends State<SizeWidget>
 
   Animation<double> animation;
 
-
-
   @override
   void initState() {
     // TODO: implement initState
