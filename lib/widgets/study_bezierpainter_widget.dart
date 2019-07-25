@@ -17,15 +17,28 @@ class CustomBezierWidget extends StatefulWidget {
 class _BezierWidgetState extends State<CustomBezierWidget> {
   Timer timer;
 
-  int height=200;
+  int height=100;
+
+  bool flag=true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(Duration(microseconds: 5000), (timer) {
       setState(() {
-        height=height-5;
-        if(height==-200)timer.cancel();
+        if(flag){
+          height=height-1;
+
+        }else{
+          height=height+1;
+        }
+
+        if(height==-100){
+          flag=false;
+        }
+
+        if(height==100)flag=true;
       });
     });
   }
@@ -67,14 +80,14 @@ class BezierPainter extends CustomPainter{
     _path.moveTo(0,Screen.screenHeightDp/2);
     _paint.color=Colors.deepOrange;
     //canvas.drawPoints(PointMode.points, [Offset(Screen.screenWidthDp,Screen.screenHeightDp/2),offset1,offset2], _paint);
-    _path.quadraticBezierTo(Screen.screenWidthDp/4, Screen.screenHeightDp/2+this.height, Screen.screenWidthDp/2,Screen.screenHeightDp/2);
+    _path.quadraticBezierTo(Screen.screenWidthDp/4, Screen.screenHeightDp/2-this.height, Screen.screenWidthDp/2,Screen.screenHeightDp/2);
 
     canvas.save();
     canvas.restore();
 
 
     _path.moveTo(Screen.screenWidthDp/2,Screen.screenHeightDp/2);
-    _path.quadraticBezierTo(Screen.screenWidthDp/4*3,  Screen.screenHeightDp/2-this.height, Screen.screenWidthDp,Screen.screenHeightDp/2);
+    _path.quadraticBezierTo(Screen.screenWidthDp/4*3,  Screen.screenHeightDp/2+this.height, Screen.screenWidthDp,Screen.screenHeightDp/2);
 
     canvas.drawPath(_path, _paint);
     //canvas.drawLine(Offset(0, 0), Offset(0, 20), _paint);
@@ -83,6 +96,6 @@ class BezierPainter extends CustomPainter{
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     // TODO: implement shouldRepaint
-    return false;
+    return true;
   }
 }
