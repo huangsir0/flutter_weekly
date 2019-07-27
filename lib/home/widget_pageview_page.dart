@@ -102,7 +102,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new GanksScene(onScroll);
+        return new CustomBezierWidget2(); //new GanksScene(onScroll);
       case 1:
         return new CustomBezierWidget();
       case 2:

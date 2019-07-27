@@ -74,8 +74,4 @@ class _WaitingWidgetState extends State<WaitingWidget> with SingleTickerProvider
     );
 
   }
-
-
-
-
 }
