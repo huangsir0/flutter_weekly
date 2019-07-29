@@ -287,6 +287,10 @@ class BezierPainter1 extends CustomPainter {
 
 /// 贝塞尔曲线示例三
 class CustomBezierWidget2 extends StatefulWidget {
+  final double progress;
+
+  CustomBezierWidget2(this.progress);
+
   @override
   _CustomBezierWidget2State createState() => _CustomBezierWidget2State();
 }
@@ -295,69 +299,62 @@ class _CustomBezierWidget2State extends State<CustomBezierWidget2>
     with SingleTickerProviderStateMixin {
 
 
-  Timer timer;
+  AnimationController _animationController;
 
-  int height = 20;
+  Animation<double> _animationTranslate;
 
-  bool flag = true;
+  double _moveX; //移动的X,此处变化一个波长
+  double _r; //半径
+  double waveLength;//波长
 
+  double _waveCount=2;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    timer = Timer.periodic(Duration(microseconds: 12000), (timer) {
+    _r = Screen.screenWidthDp / 3;
+    waveLength = 2 * _r / _waveCount;
+    _animationController=new AnimationController(vsync: this,duration: Duration(seconds: 1));
+    _animationTranslate=Tween<double>(begin: 0,end: waveLength).animate(_animationController)..addListener((){
       setState(() {
-        if (flag) {
-          height = height - 1;
-        } else {
-          height = height + 1;
-        }
 
-        if (height == -20) {
-          flag = false;
-        }
-
-        if (height == 20) flag = true;
       });
     });
-
-
+    _animationController.repeat();
   }
 
   @override
   void deactivate() {
     // TODO: implement deactivate
     super.deactivate();
-
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    timer.cancel();
 
   }
 
   @override
   Widget build(BuildContext context) {
+
     return CustomPaint(
-      painter: BezierPainter2(40,height.toDouble()),
+      painter: BezierPainter2(progress:this.widget.progress,waveHeight:15,moveX:_animationTranslate.value,r:_r,waveLength:waveLength),
     );
   }
 }
 
 class BezierPainter2 extends CustomPainter {
-  final double waveHeight; //波浪高
   final double progress; //进度
+  final double waveHeight; //波浪高
+  final double moveX; //移动的X,此处变化一个波长
+  final double r; //半径
+  final double waveLength; //一个波浪的长度
+  final waveCount = 2; //波浪个数
 
-  double waveLength; //一个波浪的长度
-
-  Offset _progressOffset; //延竖直Y轴进度的Y轴
-  double _progressXianXLength; //移动中半弦的长度,
   double _progressY; //移动中Y的坐标
-  double _progressX; //移动中X的坐标
 
   Paint _pointPaint; //点画笔
   Paint _pathPaint; //线画笔
@@ -366,12 +363,11 @@ class BezierPainter2 extends CustomPainter {
   Path _path = Path(); //路径
 
   Offset centerOffset; //圆心
-  double _r; //半径
 
 
-  double tranlateX=-160;
 
-  BezierPainter2(this.progress, this.waveHeight) {
+  BezierPainter2(
+  {this.progress, this.waveHeight, this.moveX, this.r, this.waveLength}) {
     _pointPaint = Paint()
       ..color = Colors.teal
       ..strokeWidth = 4
@@ -388,73 +384,41 @@ class BezierPainter2 extends CustomPainter {
       ..isAntiAlias = true
       ..strokeWidth = 1;
     centerOffset = Offset(Screen.screenWidthDp / 2, Screen.screenHeightDp / 2);
-    _r = Screen.screenWidthDp / 3;
   }
 
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
 
-    _path.addArc(Rect.fromCircle(center: centerOffset, radius: _r), 0, 360);
+    _path.addArc(Rect.fromCircle(center: centerOffset, radius: r), 0, 360);
     canvas.clipPath(_path); //把画布裁剪成一个圆形,这样怎么画都是圆。
-    canvas.drawCircle(centerOffset, _r, _pointPaint); //画圆
+    canvas.drawCircle(centerOffset, r, _pointPaint); //画圆
     _path.reset();
 
-    _progressXianXLength = math.sqrt(math.pow(_r, 2) -
-        math.pow((_r - _r / 50 * this.progress), 2)); //三角形勾股定理
+    _progressY = centerOffset.dy + (r - r / 50 * this.progress); //算出Y点的坐标
 
-    waveLength = _progressXianXLength; //弦长为波长,_progressXianXLength为半弦
-    _progressY = centerOffset.dy + (_r - _r / 50 * this.progress); //算出Y点的坐标
-    _progressX = centerOffset.dx; //算出X点的坐标
-    _progressOffset =
-        Offset(_progressX, _progressY); //此坐标即是第一个贝塞尔曲线的终点，也是第 二个贝塞尔曲线的起点
-
-    //print("移动中的坐标点: ${_progressOffset.toString()}");
-    //print("centerOffset: ${centerOffset.toString()}");
     //画弦
-    _path.moveTo(_progressOffset.dx - waveLength, _progressOffset.dy);
+    _path.moveTo(-waveLength + moveX, _progressY);
 
-    for(int i=0;i<2;i++){
-
+    for (int i = 0; i < waveCount * 2; i++) {
+      canvas.save();
+      canvas.restore();
       _path.quadraticBezierTo(
-          _progressOffset.dx - waveLength / 4*3+waveLength*i,
-          _progressOffset.dy - waveHeight,
-          _progressOffset.dx-waveLength/2+waveLength*i,
-          _progressOffset.dy);
-      _path.moveTo( _progressOffset.dx-waveLength/2+waveLength*i, _progressOffset.dy);
-      _path.quadraticBezierTo(
-          _progressOffset.dx - waveLength / 4+waveLength*i,
-          _progressOffset.dy + waveHeight,
-          _progressOffset.dx +waveLength*i,
-          _progressOffset.dy);
+          -waveLength / 4 * 3 + (waveLength * i) + moveX,
+          _progressY + waveHeight,
+          -waveLength / 2 + (waveLength * i) + moveX,
+          _progressY);
+      _path.quadraticBezierTo(-waveLength / 4 + (waveLength * i) + moveX,
+          _progressY - waveHeight, 0 + waveLength * i + moveX, _progressY);
     }
-
-
+    print("_moveX=${moveX.toString()}");
     //封闭圆
-    if (this.progress <= 50) {
-      //封闭下半圆
-      _path.moveTo(
-          _progressOffset.dx + _progressXianXLength, _progressOffset.dy); //
-      _path.lineTo(_progressOffset.dx + _progressXianXLength,
-          _progressOffset.dy + _progressXianXLength);
-      _path.lineTo(_progressOffset.dx - _progressXianXLength,
-          _progressOffset.dy + _progressXianXLength);
-      _path.lineTo(
-          _progressOffset.dx - _progressXianXLength, _progressOffset.dy);
-    } else {
-      //封闭上半圆
-      _path.moveTo(_progressOffset.dx + _r, _progressOffset.dy);
-      _path.lineTo(_progressOffset.dx + _r, centerOffset.dy + _r);
-      _path.lineTo(_progressOffset.dx - _r, centerOffset.dy + _r);
-      _path.lineTo(_progressOffset.dx - _r, _progressOffset.dy);
-    }
+    _path.moveTo(centerOffset.dx + r, _progressY);
+    _path.lineTo(centerOffset.dx + r, centerOffset.dy + r);
+    _path.lineTo(centerOffset.dx - r, centerOffset.dy + r);
+    _path.lineTo(centerOffset.dx - r, _progressY);
     _path.close();
     canvas.drawPath(_path, _pathPaint);
-    canvas.save();
-    canvas.restore();
-    if(tranlateX+40>=0){
-      tranlateX=-160;
-    }
   }
 
   @override
@@ -463,6 +427,3 @@ class BezierPainter2 extends CustomPainter {
     return true;
   }
 }
-
-
-
