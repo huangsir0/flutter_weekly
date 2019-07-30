@@ -5,7 +5,6 @@ import 'dart:ui';
 import 'dart:math' as math;
 import 'package:flutter_weekly/common/utils/screen.dart';
 
-import 'delay_tween.dart';
 
 ///贝塞尔曲线示例一
 class CustomBezierWidget extends StatefulWidget {
@@ -241,41 +240,12 @@ class BezierPainter1 extends CustomPainter {
           _centerY - _waveHeight,
           0 + waveLength * i + this.myOffsetX,
           _centerY);
-
-      //控制点绘画
-/*      canvas.drawPoints(PointMode.points, [
-        Offset(-waveLength/4*3+(waveLength*i)+this.myOffsetX, _centerY+_waveHeight),
-        Offset(-waveLength/2+(waveLength*i)+this.myOffsetX, _centerY),
-        Offset(-waveLength/4+(waveLength*i)+this.myOffsetX, _centerY-_waveHeight),
-        Offset(0+waveLength*i+this.myOffsetX, _centerY),
-      ], _pointPaint);*/
       canvas.drawPath(_path, _whitePaint);
     }
     _path.lineTo(_screenWidth, _screenHeight);
     _path.lineTo(0, _screenHeight);
     _path.close();
     canvas.drawPath(_path, _pathPaint);
-
-    /* canvas.save();
-     canvas.restore();
-    _path.quadraticBezierTo(-_waveLength/4*3, _centerY+_waveHeight, -_waveLength/2, _centerY);
-
-    canvas.save();
-    canvas.restore();
-    _path.moveTo(-_waveLength/2, _centerY);
-    _path.quadraticBezierTo(-_waveLength/4, _centerY-_waveHeight, 0, _centerY);
-
-    canvas.save();
-    canvas.restore();
-    _path.moveTo(0, _screenHeight / 2);
-    _path.quadraticBezierTo(_waveLength/4, _centerY+_waveHeight, _waveLength/2, _centerY);
-
-    canvas.save();
-    canvas.restore();
-    _path.moveTo(_waveLength/2, _centerY);
-    _path.quadraticBezierTo(_waveLength/4*3, _centerY-_waveHeight, _waveLength, _centerY);
-
-    canvas.drawPath(_path, _pathPaint);*/
   }
 
   @override
@@ -328,18 +298,18 @@ class _CustomBezierWidget2State extends State<CustomBezierWidget2>
   void deactivate() {
     // TODO: implement deactivate
     super.deactivate();
+    _animationController.stop();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-
+     _animationController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return CustomPaint(
       painter: BezierPainter2(progress:this.widget.progress,waveHeight:15,moveX:_animationTranslate.value,r:_r,waveLength:waveLength),
     );
@@ -385,6 +355,7 @@ class BezierPainter2 extends CustomPainter {
       ..strokeWidth = 1;
     centerOffset = Offset(Screen.screenWidthDp / 2, Screen.screenHeightDp / 2);
   }
+
 
   @override
   void paint(Canvas canvas, Size size) {

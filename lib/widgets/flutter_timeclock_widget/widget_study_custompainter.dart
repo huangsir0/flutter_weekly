@@ -141,14 +141,7 @@ class CustomTimeClock extends CustomPainter {
       math.min(Screen.screenHeightDp / 3, Screen.screenWidthDp / 3);
 
   final int lineHeight = 10;
-
-  List<TextPainter> _textPaint = [
-    _getTextPainter("12"),
-    _getTextPainter("3"),
-    _getTextPainter("6"),
-    _getTextPainter("9"),
-  ];
-
+  
   //文字画笔
   TextPainter _textPainter = new TextPainter(
       textAlign: TextAlign.left, textDirection: TextDirection.ltr);
@@ -169,17 +162,7 @@ class CustomTimeClock extends CustomPainter {
           _linePaint);
       canvas.rotate(math.pi / 30); //2*math.pi/60
     }
-    //方法一:绘制数字,此处暂时没想到更好的方法,TextPainter的绘制间距老有问题,不好控制
-    /*  _textPaint[0].layout();
-    _textPaint[0].paint(canvas, new Offset(-12, -_bigRadius+20));
-    _textPaint[1].layout();
-    _textPaint[1].paint(canvas, new Offset(_bigRadius-30,-12));
-    _textPaint[2].layout();
-    _textPaint[2].paint(canvas, new Offset(-6,_bigRadius-40));
-    _textPaint[3].layout();
-    _textPaint[3].paint(canvas, new Offset(-_bigRadius+20,-12));*/
-
-    //方法二:绘制数字,
+    //绘制数字,
     for (int i = 0; i < 12; i++) {
       canvas.save();
       canvas.translate(0.0, -_bigRadius + 30);

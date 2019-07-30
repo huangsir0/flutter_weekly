@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../study_bezierpainter_widget.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_study_bezierpainter.dart';
 
 class WidgetCircleProgressWidget extends StatefulWidget {
   @override
@@ -38,6 +38,9 @@ class _WidgetCircleProgressWidgetState
       });
     });
   }
+
+
+
 
   @override
   void dispose() {

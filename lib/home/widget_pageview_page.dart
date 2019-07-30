@@ -3,11 +3,12 @@ import 'package:flutter_weekly/home/widget_example_scene.dart';
 import 'package:flutter_weekly/home/widget_scene.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_setting_scene.dart';
-import 'package:flutter_weekly/widgets/flutter_widgets/widget_circle_progress.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_circle_progress.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
-import 'package:flutter_weekly/widgets/study_bezierpainter_widget.dart';
-import 'package:flutter_weekly/widgets/study_custompainter_widget.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_study_bezierpainter.dart';
+import 'package:flutter_weekly/widgets/flutter_timeclock_widget/widget_study_custompainter.dart';
 
 
 class HomePageViewWidget extends StatefulWidget {
@@ -103,9 +104,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new WidgetCircleProgressWidget(); //new GanksScene(onScroll);
+        return new BezierGestureWidget(); //new GanksScene(onScroll);
       case 1:
-        return new CustomBezierWidget();
+        return new WidgetExampleScene();
       case 2:
         return new WidgetExampleScene();
       case 3:

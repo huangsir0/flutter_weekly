@@ -156,14 +156,26 @@ class ContentPageState extends State<ContentPage> {
         : Center(
             key: this.widget.key,
             child: new RefreshIndicator(
-                child: ListView.separated(
-                  itemBuilder: (BuildContext context, int index) {
-                    return _itemView(context, index);
-                  },
-                  itemCount: datas.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return index % 2 == 0 ? divider1 : divider2;
-                  },
+                child: Column(
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            ListView.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                return _itemView(context, index);
+                              },
+                              itemCount: datas.length,
+                              separatorBuilder: (BuildContext context, int index) {
+                                return index % 2 == 0 ? divider1 : divider2;
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 onRefresh: _onRefresh),
           );
