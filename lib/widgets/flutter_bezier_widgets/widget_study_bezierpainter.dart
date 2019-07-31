@@ -231,7 +231,7 @@ class BezierPainter1 extends CustomPainter {
     _screenHeight = size.height; //屏幕高,这里不是一直成立,像当有Center 父控件的时候就不成立
     _screenWidth = size.width; //屏幕宽
     _waveCount = (_screenWidth / waveLength)
-        .round(); //根据波长算出波的个数,这里的波浪个数多一点,这样可以在屏幕内看到更完整的波浪
+        .round()+2; //根据波长算出波的个数,这里的波浪个数多一点,这样可以在屏幕内看到更完整的波浪
     _centerY = _screenHeight / 2; //中心高度的值
     _path.moveTo(
         -waveLength + this.myOffsetX, _centerY); //把画笔的起点移到屏幕外的一个波长处,Y轴在屏幕中间
