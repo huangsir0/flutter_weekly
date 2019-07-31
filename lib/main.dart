@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_weekly/home/widget_pageview_page.dart';
+import 'package:flutter_weekly/home/widget_pageview_scene.dart';
 import 'package:redux/redux.dart';
 import 'common/global_stage.dart';
 import 'common/utils/common_util.dart';
