@@ -4,6 +4,7 @@ import 'package:flutter_weekly/home/widget_scene.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_setting_scene.dart';
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_circle_progress.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
@@ -104,7 +105,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new BezierGestureWidget(); //new GanksScene(onScroll);
+        return new CircleColorsWidget(); //new GanksScene(onScroll);
       case 1:
         return new CustomBezierWidget1();
       case 2:
