@@ -105,9 +105,9 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new CircleColorsWidget(); //new GanksScene(onScroll);
+        return new GanksScene(onScroll);
       case 1:
-        return new CustomBezierWidget1();
+        return new CircleColorsWidget();
       case 2:
         return new WidgetExampleScene();
       case 3:
@@ -119,6 +119,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
     return new BottomNavigationBarItem(
         icon: new Icon(iconData), title: new Text(tab));
   }
+
 }
 
 class HomePageView extends StatelessWidget {

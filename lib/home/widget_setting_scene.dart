@@ -5,6 +5,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/common/global_stage.dart';
 import 'package:flutter_weekly/common/reduxs/theme_redux.dart';
 import 'package:flutter_weekly/common/utils/common_util.dart';
+import 'package:flutter_weekly/common/utils/screen.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
+import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_mutiple_circle.dart';
 
 
 class WidgetSettingPage extends StatefulWidget {
@@ -13,8 +16,12 @@ class WidgetSettingPage extends StatefulWidget {
 }
 
 class _WidgetSettingPageState extends State<WidgetSettingPage> {
+
+   int _themeIndex=2;
+
   @override
   Widget build(BuildContext context) {
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Settings"),
@@ -22,29 +29,34 @@ class _WidgetSettingPageState extends State<WidgetSettingPage> {
       ),
       body:  new StoreBuilder<GlobalStage>(
         builder: (context, store) {
-          return new ListView(
+          return  Column(
             children: <Widget>[
-              new Padding(
-                padding:
-                const EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
-                child: new RaisedButton(
-                  onPressed: () {
-                    ThemeData themeData;
-                    List<Color> colors = CommonUtils.getThemeListColor();
-                    num index=new Random().nextInt(colors.length);
-                    themeData =store.state.themeData.copyWith(primaryColor: colors[index]) ;
-                    store.dispatch(new RefreshColorGradientAction(CommonUtils.getColorGradients()[index]));
+               new Container(
+                  margin: EdgeInsets.only(top: (Screen.screenHeightDp-Screen.navigationBarHeight*2)/2-120),
+                  child: MutilpeCirclesButton(bigRadius: 80,color: CommonUtils.getThemeListColor()[_themeIndex],label:"主题更新",colorThemeChange:(_color){
+                    ThemeData themeData=store.state.themeData.copyWith(primaryColor: _color) ;
+                    store.dispatch(new RefreshColorGradientAction(CommonUtils.getColorGradients()[_themeIndex]));
                     store.dispatch(new RefreshThemeDataAction(themeData));
                   },
-                  child: new Text("随机切换颜色"),
+                  ),
                 ),
+
+                SizedBox(height:80,width:Screen.screenWidthDp),
+              CircleColorsWidget(themeChangeAction: (index){
+                setState(() {
+                  _themeIndex=index;
+                });
+              }
               ),
+
             ],
           );
         },
       ),
     );
   }
+
+
 }
 
 

@@ -16,8 +16,7 @@ void main() {
 class FlutterStudyApp extends StatelessWidget {
   //创建Store，引用Global 中的appReducer 创建Reducer
   //initialStage 初始化Stage
-  static final index =
-      math.Random().nextInt(CommonUtils.getThemeListColor().length);
+  static final index =2;
   final store = new Store<GlobalStage>(appReducer,
       initialState: new GlobalStage(
           themeData:

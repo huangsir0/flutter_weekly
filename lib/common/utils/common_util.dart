@@ -44,10 +44,10 @@ class CommonUtils {
         Color.lerp(Color(0xFFE2B0FF), Color(0xFF9F44D3), 0.4),
         Color(0xFF9F44D3)
       ]),
-      ColorGradient(colorName: "3", colors: [
+  /*    ColorGradient(colorName: "3", colors: [
         Color.lerp(Color(0xFF3C8CE7), Color(0xFF00EAFF), 0.8),
         Color(0xFF3C8CE7)
-      ]),
+      ]),*/
       ColorGradient(colorName: "4", colors: [
         Color.lerp(Color(0xFFF6CEEC), Color(0xFFD939CD), 0.4),
         Color(0xFFD939CD)
