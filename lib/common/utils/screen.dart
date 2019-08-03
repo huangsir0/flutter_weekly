@@ -86,4 +86,6 @@ class Screen {
   static setSp(double fontSize) => allowFontScaling
       ? setWidth(fontSize)
       : setWidth(fontSize) / textScaleFactory;
+
+
 }

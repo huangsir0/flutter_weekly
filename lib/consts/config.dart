@@ -27,4 +27,8 @@ class Config{
 
   //Android 数据
   static const commonData='data/';
+
+
+  //widgets配置信息
+  static const widgets="widgets";
 }

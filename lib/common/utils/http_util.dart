@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_weekly/consts/config.dart';
-
-
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:convert';
 class DioFactory {
   static DioFactory get instance => _getInstance();
   static DioFactory _instance;
@@ -30,7 +30,7 @@ class DioFactory {
     return _instance;
   }
 
-  /// get 请求封装
+  /// get 网络请求封装
   get(url,{ options, cancelToken, data}) async {
     print('get:::url：$url ,body: $data');
     Response response;
@@ -51,7 +51,7 @@ class DioFactory {
   }
 
 
-  /// post请求封装
+  /// post网络请求封装
   post(url,{ options, cancelToken, data}) async {
     print('post请求::: url：$url ,body: $data');
     Response response;
@@ -71,4 +71,18 @@ class DioFactory {
     }
     return response.data;
   }
+
+
+  ///本地获取信息
+  Future<dynamic> localGet(String url,{Map params}) async{
+    return mock(url:url,params: params);
+  }
+
+   ///本地配置信息
+   Future<dynamic> mock({String url, Map params}) async {
+    var responseStr = await rootBundle.loadString('mock/$url.json');
+    var responseJson = json.decode(responseStr);
+    return responseJson['data'];
+  }
+
 }

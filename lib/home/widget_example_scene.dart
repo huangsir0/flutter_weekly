@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/common/global_stage.dart';
+import 'package:flutter_weekly/mvp/beans/item_widget_bean.dart';
 
 class WidgetExampleWidget extends StatefulWidget {
   @override
@@ -8,6 +9,11 @@ class WidgetExampleWidget extends StatefulWidget {
 }
 
 class _WidgetExampleState extends State<WidgetExampleWidget> {
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return StoreBuilder<GlobalStage>(
