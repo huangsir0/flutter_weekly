@@ -53,7 +53,7 @@ class _WidgetPageWidgetState extends State<WidgetsWidget> {
         alignment: Alignment.center,
         margin: EdgeInsets.only(top:10,left: 10,right: 10),
         child: SizedBox(
-          height: Screen.setHeight(480),
+          height: Screen.setHeight(620),
           child: new Container(
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +61,7 @@ class _WidgetPageWidgetState extends State<WidgetsWidget> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(data.title,
-                      style: Theme.of(context).textTheme.title),
+                      style: Theme.of(context).textTheme.title,maxLines: 1,),
                 ),
                 new Padding(
                   padding: EdgeInsets.only(top: 10),
@@ -108,9 +108,6 @@ class _WidgetPageWidgetState extends State<WidgetsWidget> {
       });
     }
   }
-
-
-
 
 }
 

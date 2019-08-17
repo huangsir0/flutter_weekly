@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/home/widget_pageview_scene.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_circle_details.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_wave_detail.dart';
 import 'package:redux/redux.dart';
 import 'common/global_stage.dart';
 import 'common/utils/common_util.dart';
 import 'common/utils/screen.dart';
 import 'dart:math' as math;
+import 'consts/config.dart';
 import 'example1/scroll_app.dart';
+import 'widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
+import 'widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
+import 'widgets/flutter_timeclock_widget/widget_timeclock.dart';
+import 'widgets/flutter_widgets/widget_container.dart';
+import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
   runApp(new FlutterStudyApp());
@@ -16,7 +24,7 @@ void main() {
 class FlutterStudyApp extends StatelessWidget {
   //创建Store，引用Global 中的appReducer 创建Reducer
   //initialStage 初始化Stage
-  static final index =2;
+  static final index = 2;
   final store = new Store<GlobalStage>(appReducer,
       initialState: new GlobalStage(
           themeData:
@@ -33,10 +41,17 @@ class FlutterStudyApp extends StatelessWidget {
         store: store,
         child: new StoreBuilder<GlobalStage>(builder: (context, store) {
           return new MaterialApp(
-              theme: store.state.themeData,
-              home: new HomePageView() //new HomePage(),
-              );
+            theme: store.state.themeData,
+            home: new HomePageView(), //new HomePage(),
+            routes: <String, WidgetBuilder>{
+              PageRoutes.widgetTextPage:(BuildContext context)=>new WidgetTextPage(),
+              PageRoutes.widgetContainerPage:(BuildContext context)=>new WidgetContainerPage(),
+              PageRoutes.widgetPainterTimeClockPage:(BuildContext context)=>new TimeClockWidgetPage(),
+              PageRoutes.widgetBezierGesturePage:(BuildContext context)=>new BezierGesturePage(),
+              PageRoutes.widgetCircleProgressPage:(BuildContext context)=>new WidgetWavePage(),
+              PageRoutes.widgetBezierThemePage:(BuildContext context)=>new WidgetCircleDetailPage(),
+            },
+          );
         }));
   }
 }
-

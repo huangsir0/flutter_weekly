@@ -5,51 +5,58 @@ import 'dart:math' as math;
 
 import 'package:flutter_weekly/common/utils/screen.dart';
 
-class PaintWidget extends StatelessWidget {
+import '../flip_card_widget.dart';
+
+class TimeClockWidgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CustomPaint(
-        painter: CustomCirclesPainter(),
+    //这里因为画笔本身定义的是以（0,0）点为中心点，所以此处用Center
+    //前
+    var frontWidget = Container(
+      height: Screen.screenHeightDp - 200,
+      width: Screen.screenWidthDp - 40,
+      child: Card(
+        color: Theme.of(context).primaryColor,
+        child: TimeClockWidget(Colors.white),
       ),
     );
-  }
-}
+    //后
+    var backWidget = Container(
+      height: Screen.screenHeightDp - 200,
+      width: Screen.screenWidthDp - 40,
+      child: Card(
+        color: Theme.of(context).primaryColor,
+        child: Center(
+            child:CustomPaint(
+              painter: CustomCirclesPainter(Colors.white),
+            )),
+      ),
+    );
 
-class StudyPainter extends CustomPainter {
-  Paint _myPaint = new Paint()
-    ..color = Colors.deepOrange
-    ..strokeWidth = 2
-    ..style = PaintingStyle.fill;
-  Paint _myPaint1 = new Paint()
-    ..color = Colors.green
-    ..strokeWidth = 2
-    ..style = PaintingStyle.fill;
-  Paint _myPaint2 = new Paint()
-    ..color = Colors.blue
-    ..strokeWidth = 2
-    ..style = PaintingStyle.fill;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // TODO: implement paint
-    canvas.drawCircle(Offset(0.0, 0.0), 100, _myPaint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
-    return false;
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("TimeClock"),
+        ),
+        body: Center(
+          child: FlipCardWidget(
+            frontWidget: frontWidget,
+            backWidget: backWidget,
+          ),
+        ));
   }
 }
 
 class CustomCirclesPainter extends CustomPainter {
-  var myPaint = Paint()
+  Paint myPaint = Paint()
     ..color = Colors.deepOrange
     ..style = PaintingStyle.stroke
     ..strokeWidth = 1.0;
 
-  double radius = (Screen.screenWidthDp - 20) / 4;
+  double radius = (Screen.screenWidthDp - 100) / 4;
+
+  CustomCirclesPainter(Color color) {
+    myPaint.color = color;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -59,8 +66,8 @@ class CustomCirclesPainter extends CustomPainter {
       double x = 2 * math.pi / n;
       double dx = radius * math.sin(i * x);
       double dy = radius * math.cos(i * x);
-      print("dx${i.toString()}=>${dx.toString()}");
-      print("dy${i.toString()}=>${dy.toString()}");
+      //  print("dx${i.toString()}=>${dx.toString()}");
+      //print("dy${i.toString()}=>${dy.toString()}");
       canvas.drawCircle(Offset(dx, dy), radius, myPaint);
     }
   }
@@ -94,6 +101,14 @@ class _TimeClockWidgetState extends State<TimeClockWidget> {
   }
 
   @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    print("deactivate");
+    timer.cancel();
+  }
+
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
@@ -108,7 +123,6 @@ class _TimeClockWidgetState extends State<TimeClockWidget> {
 }
 
 class CustomTimeClock extends CustomPainter {
-
   CustomTimeClock(this.color) {
     //大外圆
     _bigCirclePaint = Paint()
@@ -141,7 +155,7 @@ class CustomTimeClock extends CustomPainter {
       math.min(Screen.screenHeightDp / 3, Screen.screenWidthDp / 3);
 
   final int lineHeight = 10;
-  
+
   //文字画笔
   TextPainter _textPainter = new TextPainter(
       textAlign: TextAlign.left, textDirection: TextDirection.ltr);
@@ -149,12 +163,11 @@ class CustomTimeClock extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // TODO: implement paint
-    print('_bigRadius: ${_bigRadius.toString()}');
+    // print('_bigRadius: ${_bigRadius.toString()}');
     //绘制大圆
     canvas.drawCircle(_centerOffset, _bigRadius, _bigCirclePaint);
     //绘制圆心
-    _bigCirclePaint.style = PaintingStyle.fill;
-    canvas.drawCircle(_centerOffset, _bigRadius / 20, _bigCirclePaint);
+    canvas.drawCircle(_centerOffset, _bigRadius / 20, _linePaint);
     //绘制刻度,秒针转一圈需要跳60下,这里只画6点整的刻度线，但是由于每画一条刻度线之后，画布都会旋转60°(转为弧度2*pi/60)，所以画出60条刻度线
     for (int i = 0; i < 60; i++) {
       _linePaint.strokeWidth = i % 5 == 0 ? (i % 3 == 0 ? 10 : 4) : 1; //设置线的粗细
@@ -167,8 +180,7 @@ class CustomTimeClock extends CustomPainter {
       canvas.save();
       canvas.translate(0.0, -_bigRadius + 30);
       _textPainter.text = TextSpan(
-          style: new TextStyle(color: Colors.deepOrange, fontSize: 22),
-          text: i.toString());
+          style: new TextStyle(color: color, fontSize: 22), text: i.toString());
       canvas.rotate(-deg2Rad(30) * i);
       _textPainter.layout();
       _textPainter.paint(
@@ -180,7 +192,8 @@ class CustomTimeClock extends CustomPainter {
     int hours = DateTime.now().hour;
     int minutes = DateTime.now().minute;
     int seconds = DateTime.now().second;
-    print("时: ${hours.toString()} 分：${minutes.toString()} 秒: ${seconds.toString()}");
+    /*print(
+        "时: ${hours.toString()} 分：${minutes.toString()} 秒: ${seconds.toString()}");*/
     //时针角度//以下都是以12点为0°参照
     //12小时转360°所以一小时30°
     double hoursAngle =

@@ -32,3 +32,19 @@ class Config{
   //widgets配置信息
   static const widgets="widgets";
 }
+
+
+class PageRoutes{
+  ///Text 控件
+  static final String widgetTextPage="/WidgetTextPage";
+  ///Container控件
+  static final String widgetContainerPage="/WidgetContainerPage";
+  ///画笔时钟控件
+  static final String widgetPainterTimeClockPage="/WidgetPainterTimeClockPage";
+  ///贝塞尔演示
+  static final String widgetBezierGesturePage="/WidgetBezierGesturePage";
+  ///贝塞尔水波纹进度球
+  static final String widgetCircleProgressPage="/WidgetCircleProgressPage";
+  ///贝塞尔循环粘性小球
+  static final String widgetBezierThemePage="/WidgetBezierThemePage";
+}

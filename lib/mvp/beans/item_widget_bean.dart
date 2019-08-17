@@ -4,6 +4,7 @@ class ItemWidgetBean {
   String url;
   String author;
   String createTime;
+  String pageRoute;
   String description;
 
   ItemWidgetBean(
@@ -12,6 +13,7 @@ class ItemWidgetBean {
         this.url,
         this.author,
         this.createTime,
+        this.pageRoute,
         this.description});
 
   ItemWidgetBean.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class ItemWidgetBean {
     url = json['url'];
     author = json['author'];
     createTime = json['create_time'];
+    pageRoute = json['pageRoute'];
     description = json['description'];
   }
 
@@ -31,6 +34,7 @@ class ItemWidgetBean {
     data['url'] = this.url;
     data['author'] = this.author;
     data['create_time'] = this.createTime;
+    data['pageRoute'] = this.pageRoute;
     data['description'] = this.description;
     return data;
   }

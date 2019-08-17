@@ -7,9 +7,10 @@ import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_gest
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_circle_progress.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_scene_details.dart';
 import 'package:flutter_weekly/widgets/size_widget.dart';
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_study_bezierpainter.dart';
-import 'package:flutter_weekly/widgets/flutter_timeclock_widget/widget_study_custompainter.dart';
+import 'package:flutter_weekly/widgets/flutter_timeclock_widget/widget_timeclock.dart';
 
 
 class HomePageViewWidget extends StatefulWidget {
@@ -105,7 +106,7 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new GanksScene(onScroll);
+        return new WidgetSceneDetailPage();//new GanksScene(onScroll);
       case 1:
         return new WidgetsScene();
       case 2:

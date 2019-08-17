@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weekly/common/utils/screen.dart';
 import 'dart:math' as math;
 
-class BezierGestureWidget extends StatefulWidget {
+class BezierGesturePage extends StatefulWidget {
   @override
   _BezierGestureWidgetState createState() => _BezierGestureWidgetState();
 }
 
-class _BezierGestureWidgetState extends State<BezierGestureWidget> {
+class _BezierGestureWidgetState extends State<BezierGesturePage> {
   int _bezierType = 3;
 
   @override
