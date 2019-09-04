@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'delay_tween.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/delay_tween.dart';
 
 class WaitingWidget extends StatefulWidget  {
 
@@ -72,6 +72,5 @@ class _WaitingWidgetState extends State<WaitingWidget> with SingleTickerProvider
       ),
     ),
     );
-
   }
 }

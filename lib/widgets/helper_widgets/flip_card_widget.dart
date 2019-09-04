@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../common/utils/screen.dart';
 
 class FlipCardWidget extends StatefulWidget {
   final Widget frontWidget;

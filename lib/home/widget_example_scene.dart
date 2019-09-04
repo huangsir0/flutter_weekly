@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/common/global_stage.dart';
-import 'package:flutter_weekly/mvp/beans/item_widget_bean.dart';
+import 'package:flutter_weekly/blocs/widget_scene_blocs/models/item_widget_model.dart';
 
 class WidgetExampleWidget extends StatefulWidget {
   @override

@@ -27,7 +27,6 @@ class _WebViewPageState extends State<WebViewPage> {
             initialUrl: this.widget.url,
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (msg){
-              print("=======================>"+msg);
             },
           )),
         ],

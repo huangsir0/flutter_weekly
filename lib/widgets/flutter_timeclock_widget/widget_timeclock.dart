@@ -5,7 +5,7 @@ import 'dart:math' as math;
 
 import 'package:flutter_weekly/common/utils/screen.dart';
 
-import '../flip_card_widget.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/flip_card_widget.dart';
 
 class TimeClockWidgetPage extends StatelessWidget {
   @override

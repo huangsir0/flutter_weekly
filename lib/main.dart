@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_weekly/home/widget_pageview_scene.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets/column_row/column_row_widgets.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets/stack/stack_page.dart';
+import 'package:flutter_weekly/widgets/flutter_widgets/textfield/textfield_widgets.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_circle_details.dart';
 import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_wave_detail.dart';
 import 'package:redux/redux.dart';
@@ -9,7 +12,8 @@ import 'common/utils/common_util.dart';
 import 'common/utils/screen.dart';
 import 'dart:math' as math;
 import 'consts/config.dart';
-import 'example1/scroll_app.dart';
+import 'examples/example1/scroll_app.dart';
+import 'examples/example2/imageapp.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
 import 'widgets/flutter_timeclock_widget/widget_timeclock.dart';
@@ -17,8 +21,10 @@ import 'widgets/flutter_widgets/widget_container.dart';
 import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
-  runApp(new FlutterStudyApp());
-  //runApp(new ScrollApp());
+  //runApp(new FlutterStudyApp());
+  runApp(new ScrollApp());
+  //runApp(new MyApp());
+
 }
 
 class FlutterStudyApp extends StatelessWidget {
@@ -46,6 +52,9 @@ class FlutterStudyApp extends StatelessWidget {
             routes: <String, WidgetBuilder>{
               PageRoutes.widgetTextPage:(BuildContext context)=>new WidgetTextPage(),
               PageRoutes.widgetContainerPage:(BuildContext context)=>new WidgetContainerPage(),
+              PageRoutes.widgetStackPage:(BuildContext context)=>new StackPage(),
+              PageRoutes.widgetColumnAndRowPage:(BuildContext context)=>new RowColunmPage(),
+              PageRoutes.widgetTextFieldPage:(BuildContext context)=>new TextFieldWidget(),
               PageRoutes.widgetPainterTimeClockPage:(BuildContext context)=>new TimeClockWidgetPage(),
               PageRoutes.widgetBezierGesturePage:(BuildContext context)=>new BezierGesturePage(),
               PageRoutes.widgetCircleProgressPage:(BuildContext context)=>new WidgetWavePage(),

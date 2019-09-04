@@ -39,6 +39,12 @@ class PageRoutes{
   static final String widgetTextPage="/WidgetTextPage";
   ///Container控件
   static final String widgetContainerPage="/WidgetContainerPage";
+  ///Stack控件
+  static final String widgetStackPage="/WidgetStackPage";
+  ///Column & Row 控件
+  static final String widgetColumnAndRowPage="/WidgetColumnAndRowPage";
+  ///TextField 控件
+  static final String widgetTextFieldPage="/WidgetTextFieldPage";
   ///画笔时钟控件
   static final String widgetPainterTimeClockPage="/WidgetPainterTimeClockPage";
   ///贝塞尔演示

@@ -4,7 +4,7 @@ import 'package:flutter_weekly/common/global_stage.dart';
 import 'package:flutter_weekly/common/utils/common_util.dart';
 import 'package:flutter_weekly/consts/config.dart';
 import 'package:flutter_weekly/mvp/constract/maincontract.dart';
-import 'package:flutter_weekly/widgets/loading_widget.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/loading_widget.dart';
 import '../main_presenter.dart';
 import 'common_scene.dart';
 

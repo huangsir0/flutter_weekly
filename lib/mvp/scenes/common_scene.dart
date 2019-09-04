@@ -4,8 +4,8 @@ import 'package:flutter_weekly/common/global_stage.dart';
 import 'package:flutter_weekly/mvp/beans/common_bean.dart';
 import 'package:flutter_weekly/mvp/constract/commoncontract.dart';
 import 'package:flutter_weekly/mvp/scenes/webview_scene.dart';
-import 'package:flutter_weekly/widgets/beauty_widget.dart';
-import 'package:flutter_weekly/widgets/loading_widget.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/beauty_widget.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/loading_widget.dart';
 import '../common_presenter.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 

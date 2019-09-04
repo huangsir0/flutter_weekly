@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_study_bezierpainter.dart';
 
 class WidgetCircleProgressWidget extends StatefulWidget {
+  final Color color;
+
+  const WidgetCircleProgressWidget({Key key, this.color}) : super(key: key);
   @override
   _WidgetCircleProgressWidgetState createState() =>
       _WidgetCircleProgressWidgetState();
@@ -38,10 +41,7 @@ class _WidgetCircleProgressWidgetState
       });
     });
   }
-
-
-
-
+  
   @override
   void dispose() {
     // TODO: implement dispose
@@ -51,6 +51,6 @@ class _WidgetCircleProgressWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return CustomBezierWidget2(progress);
+    return CustomBezierWidget2(progress,widget.color);
   }
 }

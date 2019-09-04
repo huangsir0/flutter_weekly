@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+
+class PositionPage extends StatefulWidget {
+  @override
+  _PositionPageState createState() => _PositionPageState();
+}
+
+class _PositionPageState extends State<PositionPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Position'),
+      ),
+      body: new StackWidget3()//new StackWidget1(),
+    );
+  }
+}
+
+class StackWidget1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints.expand(),
+      child: new Stack(
+        alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+        children: <Widget>[
+          Container(
+            child: Text(
+              'Hello World',
+              style: TextStyle(color: Colors.white),
+            ),
+            color: Colors.red,
+          ),
+          Positioned(
+            left: 18.0,
+            child: Text('positioned-left '),
+          ),
+          Positioned(
+            top: 18,
+            child: Text('positioned-top'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StackWidget2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints.expand(),
+      child: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand, //未定位widget占满Stack整个空间，
+        children: <Widget>[
+          Positioned(
+            left: 18.0,
+            child: Text('positioned-left'),
+          ),
+          Container(
+            child: Text(
+              'Hello World',
+              style: TextStyle(color: Colors.white),
+            ),
+            color: Colors.red,
+          ),
+          Positioned(
+            top: 18.0,
+            child: Text('positioned-top'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StackWidget3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+        constraints: BoxConstraints.expand(),
+        child: Container(
+          color: Colors.purple,
+          constraints: BoxConstraints.expand(height: 100),
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                left: 10,
+                top: 10,
+                height: 60,
+                width: 60,
+                child: Container(
+                  color: Colors.red,
+                ),
+              ),
+              Positioned(
+                right: 200,
+                top: 30,
+                height: 60,
+                width: 60,
+                child: Container(
+                  color: Colors.blue,
+                ),
+              ),
+              Positioned(
+                right: 10,
+                top: 10,
+                height: 60,
+                width: 60,
+                child: Container(
+                  color: Colors.green,
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}

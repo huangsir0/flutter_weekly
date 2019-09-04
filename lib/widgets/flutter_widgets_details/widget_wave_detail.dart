@@ -12,18 +12,11 @@ class _WidgetWavePageState extends State<WidgetWavePage> {
   List<Widget> _widgets = new List();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _widgets.clear();
-    _widgets.add(getCard(context,CustomBezierWidget()));
-    _widgets.add(getCard(context,CustomBezierWidget1()));
-    _widgets.add(getCard(context,WidgetCircleProgressWidget()));
-
-  }
-
-  @override
   Widget build(BuildContext context) {
+    _widgets.clear();
+    _widgets.add(_getCard(context,CustomBezierWidget1(color: Theme.of(context).primaryColor,)));
+    _widgets.add(_getCard(context,CustomBezierWidget(color: Theme.of(context).primaryColor)));
+    _widgets.add(_getCard(context,WidgetCircleProgressWidget(color: Theme.of(context).primaryColor,)));
     return Scaffold(
       appBar: AppBar(
         title: Text('WaveWidget'),
@@ -40,8 +33,7 @@ class _WidgetWavePageState extends State<WidgetWavePage> {
   }
 
   ///获取Card
-  Widget getCard(BuildContext context, Widget customBezierWidget) {
-
+  Widget _getCard(BuildContext context, Widget customBezierWidget) {
     return Container(
       child: Card(
         child: customBezierWidget,

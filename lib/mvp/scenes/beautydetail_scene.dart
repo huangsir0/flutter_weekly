@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weekly/widgets/beauty_widget.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/beauty_widget.dart';
 class BeautyDetailScene extends StatelessWidget {
   final String des;
   final String imgUrl;

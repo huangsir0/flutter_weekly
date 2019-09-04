@@ -11,6 +11,8 @@ class CommonUtils {
         title: TextStyle(fontSize: 24.0, color: Colors.grey[800]),
         headline: TextStyle(
             fontSize: 22, color: Colors.grey[800], letterSpacing: 1.2),
+          subtitle: TextStyle(
+              fontSize: 20, color: Colors.grey[600], letterSpacing: 1),
         body1: TextStyle(
             fontSize: 20, color: Colors.grey, letterSpacing: 1.2, height: 1.2),
         body2: TextStyle(fontSize: 20, color: Colors.grey, letterSpacing: 1.5),

@@ -7,54 +7,90 @@
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
+      "daytime": "星期一",
       "create_time": "2019-7-10",
       "pageRoute": "/WidgetTextPage",
-      "description": "Text控件属性笔记..."
+      "description": "\t\tText控件属性笔记,该widget可让创建一个带格式的文本,它包含一些控制文本显示样式的一些属性,类似于Android中的TextView。\n\t\t首先我们来看看Text控件的构造方法..."
     },
     {
       "title": "Flutter控件之Container",
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
-      "create_time": "2019-7-10",
+      "daytime": "星期二",
+      "create_time": "2019-8-10",
       "pageRoute": "/WidgetContainerPage",
-      "description": "Container用法一览..."
+      "description": "\t\tContainer在Flutter中太常见了,官方给出的简介,是一个结合了绘制（painting）、定位（positioning）以及尺寸（sizing）widget的widget。\n\t\t可以得出几个信息,它是一个组合的widget，内部有绘制widget、定位widget、尺寸widget。后续看到的不少widget，都是通过一些更基础的widget组合而成的..."
+    },
+    {
+      "title": "Flutter控件之Stack",
+      "imgUrl": "",
+      "url": "",
+      "author": "HuangSir",
+      "daytime": "星期一",
+      "create_time": "2019-7-10",
+      "pageRoute": "/WidgetStackPage",
+      "description": "\t\t层叠布局和Web中的绝对定位、Android中的Frame布局是相似的，子组件可以根据距父容器四个角的位置来确定自身的位置。绝对定位允许子组件堆叠起来（按照代码中声明的顺序）。Flutter中使用Stack和Positioned这两个组件来配合实现绝对定位。\n\t\tStack允许子组件堆叠，而Positioned用于根据Stack的四个角来确定子组件的位置..."
+    },
+    {
+      "title": "Flutter控件之Column & Row",
+      "imgUrl": "",
+      "url": "",
+      "author": "HuangSir",
+      "daytime": "星期一",
+      "create_time": "2019-7-10",
+      "pageRoute": "/WidgetColumnAndRowPage",
+      "description": "\t\t看字面意思我们大概就能知道，这是一个横向布局和一个纵向布局，没错，这两个就相当于 LinearLayout 中 orientation 的 horizontal 和 vertical 属性。\n\t\t下面来了解一下这两个布局的用法..."
+    },
+    {
+      "title": "Flutter控件之TextField",
+      "imgUrl": "",
+      "url": "",
+      "author": "HuangSir",
+      "daytime": "星期一",
+      "create_time": "2019-7-10",
+      "pageRoute": "/WidgetTextFieldPage",
+      "description": "\t\t顾名思义文本输入框，类似于iOS中的UITextField和Android中的EditText和Web中的TextInput。主要是为用户提供输入文本提供方便。相信大家在原生客户端上都用过这个功能。\n\t\t接下来还是具体介绍下Flutter中TextField的用法..."
     },
     {
       "title": "CustomPainter画笔之自定义时钟",
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
-      "create_time": "2019-7-10",
+      "daytime": "星期三",
+      "create_time": "2019-9-10",
       "pageRoute": "/WidgetPainterTimeClockPage",
-      "description": "Flutter撸了一个时钟..."
+      "description": "\t\tFlutter撸了一个时钟,简要来说就是画圆圈,画时间刻度,画时针、分针、秒针、和钟表数字,其中画钟表数字稍微有一丢丢复杂,但相信看了代码之后你也会觉得没啥问题。\n\t\t现在先点击查看效果吧..."
     },
     {
       "title": "CustomPainter画笔之贝塞尔曲线演示",
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
-      "create_time": "2019-7-10",
+      "daytime": "星期四",
+      "create_time": "2019-2-10",
       "pageRoute": "/WidgetBezierGesturePage",
-      "description": "贝塞尔曲线手势演示..."
+      "description": "\t\t由于用计算机画图大部分时间是操作鼠标来掌握线条的路径，与手绘的感觉和效果有很大的差别。即使是一位精明的画师能轻松绘出各种图形，拿到鼠标想随心所欲的画图也不是一件容易的事。\n\t\t说这么多，都是用来凑字数的，这里只是曲线图的粗略体验..."
     },
     {
       "title": "CustomPainter画笔之球形水波纹进度球",
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
-      "create_time": "2019-7-10",
+      "daytime": "星期五",
+      "create_time": "2019-3-10",
       "pageRoute": "/WidgetCircleProgressPage",
-      "description": "贝塞尔曲线的案例运用一之水波纹进度球..."
+      "description": "\t\t贝塞尔曲线的案例,包括贝塞尔曲线画正余弦函数,贝塞尔曲线实现水波纹效果,贝塞尔曲线实现水波纹进度球的案例效果,当然这个进度球可能还满足不了项目需求,但是难关已经攻克。\n\t\t好了,求各位看官点击赏个脸吧..."
     },
     {
       "title": "CustomPainter画笔之循环粘性小球",
       "imgUrl": "",
       "url": "",
       "author": "HuangSir",
-      "create_time": "2019-7-10",
+      "daytime": "星期日",
+      "create_time": "2019-4-10",
       "pageRoute": "/WidgetBezierThemePage",
-      "description": "三阶贝塞尔曲线粘性小球绘制..."
+      "description": "\t\t这里其实也是贝塞尔曲线的用法案例,只不过用的是三阶贝塞尔曲线,绘制了一些可以循环滑动的粘性小球。\n\t\t各位可千万要记得来看我哦..."
     }
   ]
 }

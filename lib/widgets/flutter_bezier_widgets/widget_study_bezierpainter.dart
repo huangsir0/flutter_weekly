@@ -7,6 +7,11 @@ import 'package:flutter_weekly/common/utils/screen.dart';
 
 ///贝塞尔曲线示例一
 class CustomBezierWidget extends StatefulWidget {
+
+  final Color color;
+
+  const CustomBezierWidget({Key key, this.color}) : super(key: key);
+
   @override
   _BezierWidgetState createState() {
     // TODO: implement createState
@@ -51,25 +56,27 @@ class _BezierWidgetState extends State<CustomBezierWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(painter: BezierPainter(height));
+    return CustomPaint(painter: BezierPainter(height,widget.color));
   }
 }
 
 class BezierPainter extends CustomPainter {
   final int height; //波的高度
+  final Color color;//画笔颜色
 
-  BezierPainter(this.height);
+  BezierPainter(this.height, this.color){
+    _paint..color = this.color==null? Colors.deepOrange:this.color;
+  }
 
   //路径画笔
   Paint _paint = Paint()
-    ..color = Colors.deepOrange
     ..style = PaintingStyle.fill
     ..isAntiAlias = true
     ..strokeWidth = 10;
 
   //点画笔
   Paint _pointPaint = Paint()
-    ..color = Colors.teal
+    ..color = Colors.grey
     ..strokeWidth = 10
     ..isAntiAlias = true
     ..style = PaintingStyle.fill;
@@ -142,6 +149,11 @@ class BezierPainter extends CustomPainter {
 
 ///贝塞尔曲线示例二
 class CustomBezierWidget1 extends StatefulWidget {
+
+  final Color color;
+
+  const CustomBezierWidget1({Key key, this.color}) : super(key: key);
+
   @override
   _CustomBezierWidget1State createState() => _CustomBezierWidget1State();
 }
@@ -184,7 +196,7 @@ class _CustomBezierWidget1State extends State<CustomBezierWidget1>
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: BezierPainter1(animation.value, _waveLength),
+      painter: BezierPainter1(animation.value, _waveLength,widget.color),
     );
   }
 }
@@ -193,6 +205,7 @@ class BezierPainter1 extends CustomPainter {
   final double myOffsetX; //平移量
   final int _waveHeight = 30; //波浪高
   final double waveLength; //一个波浪的长度
+  final Color color;//画笔颜色
 
   Paint _pointPaint; //点画笔
   Paint _pathPaint; //线画笔
@@ -206,14 +219,15 @@ class BezierPainter1 extends CustomPainter {
 
   Path _path = Path(); //路径
 
-  BezierPainter1(this.myOffsetX, this.waveLength) {
+
+  BezierPainter1(this.myOffsetX, this.waveLength,this.color) {
     _pointPaint = Paint()
-      ..color = Colors.teal
+      ..color = Colors.grey
       ..strokeWidth = 4
       ..isAntiAlias = true
       ..style = PaintingStyle.fill;
     _pathPaint = Paint()
-      ..color = Colors.deepOrange
+      ..color = this.color==null? Colors.deepOrange:this.color
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
       ..strokeWidth = 1;
@@ -274,8 +288,9 @@ class BezierPainter1 extends CustomPainter {
 
 class CustomBezierWidget2 extends StatefulWidget {
   final double progress;
+  final Color color;
 
-  CustomBezierWidget2(this.progress);
+  CustomBezierWidget2(this.progress, this.color);
 
   @override
   _CustomBezierWidget2State createState() => _CustomBezierWidget2State();
@@ -326,7 +341,7 @@ class _CustomBezierWidget2State extends State<CustomBezierWidget2>
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: BezierPainter2(
+      painter: BezierPainter2(waveColor:widget.color,
           progress: this.widget.progress,
           waveHeight: 15,
           moveX: _animationTranslate.value,
@@ -343,6 +358,7 @@ class BezierPainter2 extends CustomPainter {
   final double r; //半径
   final double waveLength; //一个波浪的长度
   final waveCount = 2; //波浪个数
+  final Color waveColor;//波浪颜色
 
   double _progressY; //移动中Y的坐标
 
@@ -355,14 +371,14 @@ class BezierPainter2 extends CustomPainter {
   Offset centerOffset; //圆心
 
   BezierPainter2(
-      {this.progress, this.waveHeight, this.moveX, this.r, this.waveLength}) {
+      {this.waveColor,this.progress, this.waveHeight, this.moveX, this.r, this.waveLength}) {
     _pointPaint = Paint()
-      ..color = Colors.teal
+      ..color = Colors.grey
       ..strokeWidth = 4
       ..isAntiAlias = true
       ..style = PaintingStyle.stroke;
     _pathPaint = Paint()
-      ..color = Colors.deepOrange
+      ..color =waveColor==null?Colors.deepOrange:waveColor
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
       ..strokeWidth = 1;

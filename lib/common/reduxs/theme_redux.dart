@@ -3,6 +3,7 @@ import 'package:flutter_weekly/common/utils/common_util.dart';
 import 'package:redux/redux.dart';
 
 ///通过 flutter_redux 的 combineReducers，实现 Reducer 方法
+// ignore: non_constant_identifier_names
 final ThemeDataReducer = combineReducers<ThemeData>([
   TypedReducer<ThemeData, RefreshThemeDataAction>(_refresh),
 ]);
@@ -22,6 +23,7 @@ ThemeData _refresh(ThemeData themeData, RefreshThemeDataAction action) {
 
 
 //
+// ignore: non_constant_identifier_names
 final ColorGradientReducer=combineReducers<ColorGradient>([
   TypedReducer<ColorGradient,RefreshColorGradientAction>(_refreshColorGradient),]
 );

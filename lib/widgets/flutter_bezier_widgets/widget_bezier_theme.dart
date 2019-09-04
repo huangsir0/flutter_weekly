@@ -96,7 +96,6 @@ class _CircleColorsWidgetState extends State<CircleColorsWidget> with SingleTick
 
                 });
               }
-
             },
             onHorizontalDragStart: (DragStartDetails details){
               _preOffsetX=details.globalPosition.dx;

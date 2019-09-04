@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_weekly/home/screenutil_scene.dart';
 import 'package:flutter_weekly/home/widget_example_scene.dart';
 import 'package:flutter_weekly/home/widget_scene.dart';
 import 'package:flutter_weekly/mvp/scenes/ganks_scene.dart';
 import 'package:flutter_weekly/home/widget_setting_scene.dart';
-import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
-import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
-import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_circle_progress.dart';
-import 'package:flutter_weekly/widgets/flutter_widgets/widget_container.dart';
-import 'package:flutter_weekly/widgets/flutter_widgets_details/widget_scene_details.dart';
-import 'package:flutter_weekly/widgets/size_widget.dart';
-import 'package:flutter_weekly/widgets/flutter_bezier_widgets/widget_study_bezierpainter.dart';
-import 'package:flutter_weekly/widgets/flutter_timeclock_widget/widget_timeclock.dart';
+import 'package:flutter_weekly/widgets/helper_widgets/size_widget.dart';
 
 
 class HomePageViewWidget extends StatefulWidget {
@@ -106,11 +100,11 @@ class _HomePageViewWidgetState extends State<HomePageViewWidget> {
   Widget _buildPageItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return new WidgetSceneDetailPage();//new GanksScene(onScroll);
+        return new GanksScene(onScroll);
       case 1:
         return new WidgetsScene();
       case 2:
-        return new WidgetExampleScene();
+        return new ScreenUtilPage();//new WidgetExampleScene();
       case 3:
         return new WidgetSettingScene();
     }

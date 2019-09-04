@@ -40,7 +40,6 @@ class _WidgetSettingPageState extends State<WidgetSettingPage> {
                   },
                   ),
                 ),
-
                 SizedBox(height:80,width:Screen.screenWidthDp),
               CircleColorsWidget(themeChangeAction: (index){
                 setState(() {
@@ -48,7 +47,6 @@ class _WidgetSettingPageState extends State<WidgetSettingPage> {
                 });
               }
               ),
-
             ],
           );
         },

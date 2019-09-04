@@ -1,17 +1,3 @@
 # flutter_weekly
-
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-#flutter_weekly
+一个日常flutter学习记录项目,用到的接口是gank.io的部分接口,gank.io部分运用mvp模式开发,
+但是个人觉得mvp不适合flutter开发,所以其它模块我会选择用Redux+Bloc的模式开发。
