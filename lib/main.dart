@@ -22,7 +22,7 @@ import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
   runApp(new FlutterStudyApp());
-  //runApp(new ScrollApp());
+ // runApp(new ScrollApp());
   //runApp(new MyApp());
 
 }

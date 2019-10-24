@@ -15,7 +15,7 @@ class WidgetSettingPage extends StatefulWidget {
   _WidgetSettingPageState createState() => _WidgetSettingPageState();
 }
 
-class _WidgetSettingPageState extends State<WidgetSettingPage> {
+class _WidgetSettingPageState extends State<WidgetSettingPage> with AutomaticKeepAliveClientMixin {
 
    int _themeIndex=2;
 
@@ -53,6 +53,10 @@ class _WidgetSettingPageState extends State<WidgetSettingPage> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
 
 }

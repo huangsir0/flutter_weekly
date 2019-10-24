@@ -7,7 +7,7 @@ class ScreenUtilPage extends StatefulWidget {
   _ScreenUtilPageState createState() => _ScreenUtilPageState();
 }
 
-class _ScreenUtilPageState extends State<ScreenUtilPage> {
+class _ScreenUtilPageState extends State<ScreenUtilPage> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     // TODO: implement initState
@@ -58,4 +58,8 @@ class _ScreenUtilPageState extends State<ScreenUtilPage> {
           ])),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

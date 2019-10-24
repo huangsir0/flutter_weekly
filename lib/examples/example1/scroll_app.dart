@@ -66,7 +66,7 @@ class _ScrollHomeViewState extends State<ScrollHomeView> {
 }
 
 
-class ContentPage extends StatefulWidget {
+class ContentPage extends StatefulWidget  {
   final String content;
 
   ContentPage(this.content);
@@ -75,7 +75,7 @@ class ContentPage extends StatefulWidget {
   _ContentPageState createState() => _ContentPageState();
 }
 
-class _ContentPageState extends State<ContentPage> {
+class _ContentPageState extends State<ContentPage> with AutomaticKeepAliveClientMixin {
   List<String> datas = new List();
 
   int itemCount = 10;
@@ -139,4 +139,9 @@ class _ContentPageState extends State<ContentPage> {
       child: Text(datas[index]),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true
+  ;
 }

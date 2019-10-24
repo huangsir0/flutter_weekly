@@ -16,7 +16,7 @@ class _StackPageState extends State<StackPage> {
       body:new SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            _simpleStack(),
+            _exampleStack(),
             _alignStack(),
             _textLeftStack(),
             _textRightStack(),
@@ -32,15 +32,19 @@ class _StackPageState extends State<StackPage> {
 
 
 
-  Widget _simpleStack()=>Container(
-    constraints: BoxConstraints.expand(height: 160),
+  Widget _exampleStack()=>Container(
+    constraints: BoxConstraints.expand(height: 180),
     child: new Stack(
       children: <Widget>[
-        Container(color: Colors.red,),
-        Container(margin: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-        color: Colors.blue,),
-        Container(color: Colors.purple,margin: EdgeInsets.symmetric(vertical: 30,horizontal: 60),),
-        Container(color: Colors.yellow,margin: EdgeInsets.symmetric(vertical: 50,horizontal: 80),),
+        Container(color: Colors.black,margin:EdgeInsets.all(10)),
+        Container(color: Colors.white,margin: EdgeInsets.all(20),),
+        Container(color: Colors.black,margin:EdgeInsets.all(30),),
+        Container(color: Colors.white,margin: EdgeInsets.all(40),),
+        Container(color: Colors.black,margin:EdgeInsets.all(50),),
+        Container(color: Colors.white,margin: EdgeInsets.all(60),),
+        Container(color: Colors.black,margin:EdgeInsets.all(70),),
+        Container(color: Colors.white,margin: EdgeInsets.all(80),),
+
       ],
     ),
   );
@@ -48,16 +52,21 @@ class _StackPageState extends State<StackPage> {
   Widget _alignStack()=>Container(
     margin: EdgeInsets.only(top: 10),
     color: Colors.lightBlueAccent,
-    constraints: BoxConstraints.expand(height: 160),
+    constraints: BoxConstraints.expand(height: 180),
     child: Stack(
+      //子控件的对齐方式是Alignment.centerRight
       alignment: Alignment.centerRight,
       children: <Widget>[
+        Container(alignment: Alignment.centerLeft,
+        color: Colors.deepPurpleAccent,
+        child: Text("Alignment.centerRight",style: TextStyle(color: Colors.white),),),
         Container(
           height: 100,
             width: 100,
-          color: Colors.white,
+          color: Colors.deepOrangeAccent,
+
         ),
-        Container(height: 60,width: 60,color: Colors.black45,)
+        Container(height: 60,width: 60,color: Colors.white,)
       ],
     ),
   );
@@ -67,11 +76,11 @@ class _StackPageState extends State<StackPage> {
     margin: EdgeInsets.only(top: 10),
     color: Colors.green,
     padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-    constraints: BoxConstraints.expand(height: 60),
+    constraints: BoxConstraints.expand(height: 180),
     child: Stack(
       textDirection: TextDirection.ltr,
       children: <Widget>[
-        Text('Flutter Open drawed from left to rigt',style: TextStyle(color: Colors.purple),),
+        Text('left to rigt',style: TextStyle(color: Colors.purple),),
       ],
     ),
   );
@@ -79,13 +88,13 @@ class _StackPageState extends State<StackPage> {
 
   Widget _textRightStack()=>Container(
     margin: EdgeInsets.only(top: 10),
-    constraints: BoxConstraints.expand(height: 60),
+    constraints: BoxConstraints.expand(height: 180),
     color: Colors.lightBlueAccent,
     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
     child: Stack(
       textDirection: TextDirection.rtl,
       children: <Widget>[
-        Text('Flutter Open drawed from rigt to left',style: TextStyle(color: Colors.purple),),
+        Text(' rigt to left',style: TextStyle(color: Colors.purple),),
       ],
     ),
   );
@@ -100,41 +109,45 @@ class _StackPageState extends State<StackPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
+          margin: EdgeInsets.only(top: 10),
           constraints: BoxConstraints.expand(height: 60),
-          color: Colors.red,
+          color: Colors.pinkAccent,
           child: Stack(
             fit: StackFit.loose,
             children: <Widget>[
               Container(
                 color: Colors.blueAccent,
-                child: Text('StackFit.loose',style: TextStyle(color: Colors.black45,fontSize: 20),),
+                child: Text('StackFit.loose',style: TextStyle(color: Colors.white,fontSize: 20),),
               ),
             ],
           ),
         ),
         Container(
+          margin: EdgeInsets.only(top: 10),
           constraints: BoxConstraints.expand(height: 60),
-          color: Colors.green,
+          color: Colors.pinkAccent,
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
               Container(
-                child: Text('StackFit.expand',style: TextStyle(color: Colors.black45,fontSize: 20),),
-                color: Colors.blue,
+                color: Colors.blueAccent,
+                child: Text('StackFit.expand',style: TextStyle(color: Colors.white,fontSize: 20),),
+
               ),
             ],
           ),
         ),
-        SizedBox(height: 10,),
+
         Container(constraints: BoxConstraints.expand(height:60),
-        color: Colors.yellow,
+        margin: EdgeInsets.only(top: 10),
+        color: Colors.pinkAccent,
           child: Stack(
             fit: StackFit.passthrough,
             children: <Widget>[
               Container(
+                color: Colors.blueAccent,
                 child: Text('StackFit.passthrough',
-                style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 20),),
-                color: Colors.black45,
+                style: TextStyle(color: Colors.white,fontSize: 20),),
               ),
             ],
           ),
@@ -153,7 +166,7 @@ class _StackPageState extends State<StackPage> {
       children: <Widget>[
         Positioned(
           top: 15,
-          child: Text("Flutter Open is too long to draw here, it will be visible.\n666666666666666666666666666666666",
+          child: Text("Flutter 基础布局Widgets之Stack\nFlutter 基础布局Widgets之Stack",
             style: TextStyle(color: Colors.black),),
         ),
       ],
@@ -161,7 +174,7 @@ class _StackPageState extends State<StackPage> {
   );
 
   Widget _overClipStack()=>Container(
-    margin:  EdgeInsets.only(top: 10),
+    margin:  EdgeInsets.only(top: 40),
     color: Colors.lightBlue,
     constraints: BoxConstraints.expand(height: 40),
     child: Stack(
@@ -169,7 +182,7 @@ class _StackPageState extends State<StackPage> {
       children: <Widget>[
         Positioned(
           top: 15,
-          child: Text("Flutter Open is too long to draw here, it will be visible.\n666666666666666666666666666666666",
+          child: Text("Flutter 基础布局Widgets之Stack\nFlutter 基础布局Widgets之Stack",
             style: TextStyle(color: Colors.black),),
         ),
       ],
@@ -177,14 +190,14 @@ class _StackPageState extends State<StackPage> {
   );
 
   Widget _posStack() =>Container(
-    margin: EdgeInsets.only(top: 10),
+    margin: EdgeInsets.all( 40),
     constraints: BoxConstraints.expand(height: 40),
     color: Colors.teal,
     child: new RaisedButton(onPressed: (){
       Navigator.of(context).push(new MaterialPageRoute(builder: (context){
         return new PositionPage();
       }));
-    },child: new Text("Postioned",style: TextStyle(fontSize: 22),),),
+    },child: new Text("Postioned",style: TextStyle(fontSize: 22),),color: Colors.pinkAccent,),
   );
 }
 

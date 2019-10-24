@@ -12,7 +12,7 @@ class _PositionPageState extends State<PositionPage> {
       appBar: AppBar(
         title: Text('Position'),
       ),
-      body: new StackWidget3()//new StackWidget1(),
+      body: new StackWidget1(),
     );
   }
 }
@@ -27,18 +27,26 @@ class StackWidget1 extends StatelessWidget {
         children: <Widget>[
           Container(
             child: Text(
-              'Hello World',
+              'positioned-null',
               style: TextStyle(color: Colors.white),
             ),
             color: Colors.red,
           ),
           Positioned(
             left: 18.0,
-            child: Text('positioned-left '),
+            child: Text('positioned-left'),
           ),
           Positioned(
             top: 18,
             child: Text('positioned-top'),
+          ),
+          Positioned(
+            bottom: 18,
+            child: Text('positioned-bottom'),
+          ),
+          Positioned(
+            right: 18,
+            child: Text('positioned-right'),
           ),
         ],
       ),
@@ -46,35 +54,6 @@ class StackWidget1 extends StatelessWidget {
   }
 }
 
-class StackWidget2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints.expand(),
-      child: Stack(
-        alignment: Alignment.center,
-        fit: StackFit.expand, //未定位widget占满Stack整个空间，
-        children: <Widget>[
-          Positioned(
-            left: 18.0,
-            child: Text('positioned-left'),
-          ),
-          Container(
-            child: Text(
-              'Hello World',
-              style: TextStyle(color: Colors.white),
-            ),
-            color: Colors.red,
-          ),
-          Positioned(
-            top: 18.0,
-            child: Text('positioned-top'),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class StackWidget3 extends StatelessWidget {
   @override
