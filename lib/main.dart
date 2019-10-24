@@ -21,8 +21,8 @@ import 'widgets/flutter_widgets/widget_container.dart';
 import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
-  //runApp(new FlutterStudyApp());
-  runApp(new ScrollApp());
+  runApp(new FlutterStudyApp());
+  //runApp(new ScrollApp());
   //runApp(new MyApp());
 
 }

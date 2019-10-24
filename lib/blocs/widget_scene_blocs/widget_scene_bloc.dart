@@ -37,5 +37,4 @@ class WidgetSceneBloc implements BlocBase{
     _widgetItemDataFetcher?.close();
   }
 
-
 }
