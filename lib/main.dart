@@ -14,6 +14,7 @@ import 'dart:math' as math;
 import 'consts/config.dart';
 import 'examples/example1/scroll_app.dart';
 import 'examples/example2/imageapp.dart';
+import 'examples/materialapp_example/materialapp.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
 import 'widgets/flutter_timeclock_widget/widget_timeclock.dart';
@@ -21,10 +22,10 @@ import 'widgets/flutter_widgets/widget_container.dart';
 import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
-  runApp(new FlutterStudyApp());
+  //runApp(new FlutterStudyApp());
  // runApp(new ScrollApp());
   //runApp(new MyApp());
-
+runApp(new MaterialMyApp());
 }
 
 class FlutterStudyApp extends StatelessWidget {
