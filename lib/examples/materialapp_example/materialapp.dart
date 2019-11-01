@@ -5,15 +5,55 @@ class MaterialMyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "MaterialApp",
+      title: "我是Flutter标题",
+      routes: <String,WidgetBuilder>{
+        "/first":(BuildContext context)=>FirstPage(),
+        "/second":(BuildContext context)=>SecondPage()
+      },
       theme: ThemeData(
         primaryColor: Colors.redAccent,
       ),
-      home:MyHomePage(),
+      home:/*Center(
+        child: Text("Hello Flutter",style: TextStyle(fontSize: 20),),
+      )*/FirstPage()
+     ,
+      debugShowMaterialGrid: false,
     );
   }
 }
 
+
+class FirstPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("第一页"),
+      ),
+      body: Center(
+        child: RaisedButton(onPressed:(){
+          Navigator.pushNamed(context, '/second');
+        },child: Text("跳转到第二页"),),
+      ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("第二页"),
+      ),
+      body: Center(
+        child: RaisedButton(onPressed:(){
+          Navigator.of(context).pop(context);
+        },child: Text("返回到第一页"),),
+      ),
+    );
+  }
+}
 
 ///
 /// 主页
