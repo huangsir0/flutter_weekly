@@ -14,6 +14,7 @@ import 'dart:math' as math;
 import 'consts/config.dart';
 import 'examples/example1/scroll_app.dart';
 import 'examples/example2/imageapp.dart';
+import 'examples/example_internationalize_normal/flutter_internationalize_normal.dart';
 import 'examples/materialapp_example/materialapp.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_gesture.dart';
 import 'widgets/flutter_bezier_widgets/widget_bezier_theme.dart';
@@ -25,7 +26,8 @@ void main() {
   //runApp(new FlutterStudyApp());
  // runApp(new ScrollApp());
   //runApp(new MyApp());
-runApp(new MaterialMyApp());
+//runApp(new MaterialMyApp());
+runApp(new AppNationalizeNormal());
 }
 
 class FlutterStudyApp extends StatelessWidget {
