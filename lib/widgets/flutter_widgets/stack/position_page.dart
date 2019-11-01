@@ -34,19 +34,19 @@ class StackWidget1 extends StatelessWidget {
           ),
           Positioned(
             left: 18.0,
-            child: Text('positioned-left'),
+            child: Text('left'),
           ),
           Positioned(
             top: 18,
-            child: Text('positioned-top'),
+            child: Text('top'),
           ),
           Positioned(
             bottom: 18,
-            child: Text('positioned-bottom'),
+            child: Text('bottom'),
           ),
           Positioned(
             right: 18,
-            child: Text('positioned-right'),
+            child: Text('right'),
           ),
         ],
       ),

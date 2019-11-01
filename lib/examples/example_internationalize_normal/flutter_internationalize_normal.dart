@@ -5,8 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 GlobalKey<_FreeLocalizations> freeLocalizationStateKey = new GlobalKey<_FreeLocalizations>();
 class AppNationalizeNormal extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +42,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  bool flag=true;
+  bool flag=false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         freeLocalizationStateKey.currentState.changeLocale(const Locale('en',"US"));
       }
       flag = !flag;
-    },child: Icon(Icons.refresh),),
+    },backgroundColor: Theme.of(context).primaryColor,child: Icon(Icons.refresh),),
     );
   }
 }
