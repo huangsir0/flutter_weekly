@@ -32,11 +32,9 @@ class _WidgetCircleProgressWidgetState
         } else {
           progress = progress + 1;
         }
-
         if (progress == 0) {
           flag = false;
         }
-
         if (progress == 100) flag = true;
       });
     });

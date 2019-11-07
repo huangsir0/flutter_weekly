@@ -18,4 +18,5 @@ abstract class  IMainView extends IBaseView{
 abstract class IMainModel extends BaseModel{
 
  Future<List<String>> fetchTitles(String url);
+
 }
