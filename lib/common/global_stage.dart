@@ -8,7 +8,6 @@ class GlobalStage {
   //主题
   ThemeData themeData;
 
-
   //颜色Gradient
   ColorGradient colorGradient;
 

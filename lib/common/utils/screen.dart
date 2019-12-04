@@ -12,6 +12,7 @@ class Screen {
   static  double _screenWidthDp;
   ///当前设备高度 dp
   static double _screenHeightDp;
+
   ///设备的像素密度
   static double _screenPixelRatio;
 

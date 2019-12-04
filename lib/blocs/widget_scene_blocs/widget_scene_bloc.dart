@@ -19,7 +19,6 @@ class WidgetSceneBloc implements BlocBase{
   Observable<ItemWidgetModel> get itemDatas =>_widgetItemDataFetcher.stream;
 
 
-
   //投放一个实体类
   void dispatcherData(ItemWidgetModel data){
     _widgetItemDataFetcher.sink.add(data);

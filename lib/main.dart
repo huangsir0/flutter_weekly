@@ -14,7 +14,9 @@ import 'dart:math' as math;
 import 'consts/config.dart';
 import 'examples/example1/scroll_app.dart';
 import 'examples/example2/imageapp.dart';
+import 'examples/example_elements/element_app.dart';
 import 'examples/example_flutter_i18n/Flutteri18n.dart';
+import 'examples/example_inherited/inheried_app.dart';
 import 'examples/example_internationalize_normal/flutter_internationalize_normal.dart';
 import 'examples/example_scaffold1/scaffold1.dart';
 import 'examples/materialapp_example/materialapp.dart';
@@ -25,13 +27,17 @@ import 'widgets/flutter_widgets/widget_container.dart';
 import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
-  //runApp(new FlutterStudyApp());
+  runApp(new FlutterStudyApp());
  // runApp(new ScrollApp());
   //runApp(new MyApp());
-runApp(new MaterialMyApp());
+//runApp(new MaterialMyApp());
 //runApp(new AppNationalizeNormal());
   //runApp(new Flutteri18n());
   //runApp(new MyScaffold1());
+
+ // runApp(new ElementApp());
+
+  //runApp(InheriedWidgetApp());
 }
 
 class FlutterStudyApp extends StatelessWidget {
