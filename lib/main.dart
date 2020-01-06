@@ -14,6 +14,7 @@ import 'dart:math' as math;
 import 'consts/config.dart';
 import 'examples/example1/scroll_app.dart';
 import 'examples/example2/imageapp.dart';
+import 'examples/example_animation/animation_app.dart';
 import 'examples/example_elements/element_app.dart';
 import 'examples/example_flutter_i18n/Flutteri18n.dart';
 import 'examples/example_inherited/inheried_app.dart';
@@ -38,6 +39,7 @@ void main() {
  // runApp(new ElementApp());
 
   //runApp(InheriedWidgetApp());
+  //runApp(AnimationApp());
 }
 
 class FlutterStudyApp extends StatelessWidget {

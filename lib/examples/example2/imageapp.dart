@@ -15,7 +15,7 @@ const Color _kSelectionRectangleBackground = Color(0x15000000);
 const Color _kSelectionRectangleBorder = Color(0x80000000);
 const Color _kPlaceholderColor = Color(0x80404040);
 
-/// The main Application class.
+/// The Test Application class.
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
