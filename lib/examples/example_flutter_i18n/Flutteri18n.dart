@@ -6,7 +6,7 @@ import 'package:flutter_weekly/generated/i18n.dart';
 
 
 GlobalKey<_FreeLocalizations> freeLocalizationStateKey =
-new GlobalKey<_FreeLocalizations>(); // 1
+new GlobalKey<_FreeLocalizations>(); //
 
 class Flutteri18n extends StatelessWidget {
   @override

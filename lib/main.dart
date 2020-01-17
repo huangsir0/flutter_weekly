@@ -29,14 +29,14 @@ import 'widgets/flutter_widgets/widget_text.dart';
 
 void main() {
   runApp(new FlutterStudyApp());
- // runApp(new ScrollApp());
+  // runApp(new ScrollApp());
   //runApp(new MyApp());
 //runApp(new MaterialMyApp());
 //runApp(new AppNationalizeNormal());
   //runApp(new Flutteri18n());
   //runApp(new MyScaffold1());
 
- // runApp(new ElementApp());
+  // runApp(new ElementApp());
 
   //runApp(InheriedWidgetApp());
   //runApp(AnimationApp());
@@ -65,15 +65,24 @@ class FlutterStudyApp extends StatelessWidget {
             theme: store.state.themeData,
             home: new HomePageView(), //new HomePage(),
             routes: <String, WidgetBuilder>{
-              PageRoutes.widgetTextPage:(BuildContext context)=>new WidgetTextPage(),
-              PageRoutes.widgetContainerPage:(BuildContext context)=>new WidgetContainerPage(),
-              PageRoutes.widgetStackPage:(BuildContext context)=>new StackPage(),
-              PageRoutes.widgetColumnAndRowPage:(BuildContext context)=>new RowColunmPage(),
-              PageRoutes.widgetTextFieldPage:(BuildContext context)=>new TextFieldWidget(),
-              PageRoutes.widgetPainterTimeClockPage:(BuildContext context)=>new TimeClockWidgetPage(),
-              PageRoutes.widgetBezierGesturePage:(BuildContext context)=>new BezierGesturePage(),
-              PageRoutes.widgetCircleProgressPage:(BuildContext context)=>new WidgetWavePage(),
-              PageRoutes.widgetBezierThemePage:(BuildContext context)=>new WidgetCircleDetailPage(),
+              PageRoutes.widgetTextPage: (BuildContext context) =>
+                  new WidgetTextPage(),
+              PageRoutes.widgetContainerPage: (BuildContext context) =>
+                  new WidgetContainerPage(),
+              PageRoutes.widgetStackPage: (BuildContext context) =>
+                  new StackPage(),
+              PageRoutes.widgetColumnAndRowPage: (BuildContext context) =>
+                  new RowColunmPage(),
+              PageRoutes.widgetTextFieldPage: (BuildContext context) =>
+                  new TextFieldWidget(),
+              PageRoutes.widgetPainterTimeClockPage: (BuildContext context) =>
+                  new TimeClockWidgetPage(),
+              PageRoutes.widgetBezierGesturePage: (BuildContext context) =>
+                  new BezierGesturePage(),
+              PageRoutes.widgetCircleProgressPage: (BuildContext context) =>
+                  new WidgetWavePage(),
+              PageRoutes.widgetBezierThemePage: (BuildContext context) =>
+                  new WidgetCircleDetailPage(),
             },
           );
         }));
